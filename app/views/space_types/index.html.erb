@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Space Types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @space_types.each do |space_type| %>
+      <tr>
+        <td><%= space_type.name %></td>
+        <td><%= link_to 'Show', space_type %></td>
+        <td><%= link_to 'Edit', edit_space_type_path(space_type) %></td>
+        <td><%= link_to 'Destroy', space_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Space Type', new_space_type_path %>

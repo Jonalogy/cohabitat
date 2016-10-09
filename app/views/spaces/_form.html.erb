@@ -1,0 +1,77 @@
+<%= form_for(space) do |f| %>
+  <% if space.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(space.errors.count, "error") %> prohibited this space from being saved:</h2>
+
+      <ul>
+      <% space.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :country_id %>
+    <%= f.number_field :country_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :area_id %>
+    <%= f.number_field :area_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_area :address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :postal %>
+    <%= f.number_field :postal %>
+  </div>
+
+  <div class="field">
+    <%= f.label :space_name %>
+    <%= f.text_field :space_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :space_description %>
+    <%= f.text_area :space_description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :space_type_id %>
+    <%= f.number_field :space_type_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :vibe_id %>
+    <%= f.number_field :vibe_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :amenity_id %>
+    <%= f.number_field :amenity_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :listing_id %>
+    <%= f.number_field :listing_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
