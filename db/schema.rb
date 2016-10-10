@@ -101,7 +101,6 @@ ActiveRecord::Schema.define(version: 20161010060800) do
     t.integer  "space_type_id"
     t.integer  "vibe_id"
     t.integer  "amenity_id"
-    t.integer  "listing_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end

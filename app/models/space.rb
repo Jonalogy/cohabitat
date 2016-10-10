@@ -3,4 +3,7 @@ class Space < ApplicationRecord
   # has_many :users, through:likes
   has_many :availabilities
   has_many :bookings
+
+  belongs_to :country
+  belongs_to :area
 end
