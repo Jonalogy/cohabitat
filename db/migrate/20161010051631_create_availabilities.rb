@@ -5,7 +5,7 @@ class CreateAvailabilities < ActiveRecord::Migration[5.0]
       t.date :start
       t.date :end
       t.integer :seat
-      t.decimal :seat_price
+      t.decimal :seat_price, precision: 13, scale: 2
       t.boolean :active
 
       t.timestamps

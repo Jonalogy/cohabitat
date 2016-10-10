@@ -23,9 +23,9 @@ class AvailabilitiesController < ApplicationController
   def create
     @availability = Availability.new(availability_params)
       if @availability.save
-        format.html { redirect_to @availability, notice: 'Availability was successfully created.' }
+        redirect_to @availability, notice: 'Availability was successfully created.'
       else
-        format.html { render :new }
+        render :new
       end
   end
 
