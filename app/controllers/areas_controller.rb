@@ -8,6 +8,8 @@ class AreasController < ApplicationController
 
   # GET /areas/1
   def show
+    @countries = Country.all
+    @areas = Area.all 
   end
 
   # GET /areas/new
