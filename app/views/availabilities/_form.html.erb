@@ -11,6 +11,10 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <%= f.label :space_id %>
+    <%= f.number_field :space_id %>
+  </div>
 
   <div class="field">
     <%= f.label :start_date %>
@@ -24,7 +28,7 @@
 
   <div class="field">
     <%= f.label :seat %>
-    <%= f.number_field :seat %>
+    <%= f.number_field :seat, :value =>0, :min => 0 %>
   </div>
 
   <div class="field">
