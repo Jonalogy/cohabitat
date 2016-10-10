@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # has_many :likes
   # has_many :spaces, through :likes
+  has_many :spaces
 
   has_secure_password
 

@@ -55,17 +55,17 @@
 
   <div class="field">
     <%= f.label :space_type_id %>
-    <%= f.number_field :space_type_id %>
+    <%= f.select :space_type_id, SpaceType.all.order('name ASC').collect {|x| [x.name, x.id]}, { include_blank: 'Please select space type' } %>
   </div>
 
   <div class="field">
     <%= f.label :vibe_id %>
-    <%= f.number_field :vibe_id %>
+    <%= f.select :vibe_id, Vibe.all.order('name ASC').collect {|x| [x.name, x.id]}, { include_blank: 'Please select vibe' } %>
   </div>
 
   <div class="field">
-    <%= f.label :amenity_id %>
-    <%= f.number_field :amenity_id %>
+    <%= f.label :amenities %><br/>
+    <%= f.select :amenity_ids, Amenity.all.collect {|x| [x.name,x.id]} , {}, :multiple => true %>
   </div>
 
   <div class="actions">

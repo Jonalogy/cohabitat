@@ -2,17 +2,17 @@
 
 <p>
   <strong>User:</strong>
-  <%= @space.user_id %>
+  <%= @space.user.email %>
 </p>
 
 <p>
   <strong>Country:</strong>
-  <%= @space.country_id %>
+  <%= @space.country.name %>
 </p>
 
 <p>
   <strong>Area:</strong>
-  <%= @space.area_id %>
+  <%= @space.area.name %>
 </p>
 
 <p>
@@ -37,12 +37,12 @@
 
 <p>
   <strong>Space type:</strong>
-  <%= @space.space_type_id %>
+  <%= @space.space_type.name %>
 </p>
 
 <p>
   <strong>Vibe:</strong>
-  <%= @space.vibe_id %>
+  <%= @space.vibe.name %>
 </p>
 
 <p>

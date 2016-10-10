@@ -30,8 +30,8 @@
         <td><%= space.postal %></td>
         <td><%= space.space_name %></td>
         <td><%= space.space_description %></td>
-        <td><%= space.space_type_id %></td>
-        <td><%= space.vibe_id %></td>
+        <td><%= space.space_type.name %></td>
+        <td><%= space.vibe.name %></td>
         <td><%= space.amenity_id %></td>
         <td><%= link_to 'Show', space %></td>
         <td><%= link_to 'Edit', edit_space_path(space) %></td>
