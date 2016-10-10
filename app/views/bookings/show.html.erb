@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Space:</strong>
+  <%= @booking.space_id %>
+</p>
+
+<p>
+  <strong>Availability:</strong>
+  <%= @booking.availability_id %>
+</p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @booking.start %>
+</p>
+
+<p>
+  <strong>End:</strong>
+  <%= @booking.end %>
+</p>
+
+<p>
+  <strong>Seat:</strong>
+  <%= @booking.seat %>
+</p>
+
+<p>
+  <strong>Total price:</strong>
+  <%= @booking.total_price %>
+</p>
+
+<%= link_to 'Edit', edit_booking_path(@booking) %> |
+<%= link_to 'Back', bookings_path %>
