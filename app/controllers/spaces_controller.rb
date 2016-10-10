@@ -21,9 +21,28 @@ class SpacesController < ApplicationController
 
   # POST /spaces
   def create
+
+    uploaded_file_1 = params[:space][:workspace_image_url_1].path
+    cloudinary_file_1 = Cloudinary::Uploader.upload(uploaded_file_1)
+    # params[:space][:workspace_image_url_1] = cloudinary_file_1["url"]
+
+    uploaded_file_2 = params[:space][:workspace_image_url_2].path
+    cloudinary_file_2 = Cloudinary::Uploader.upload(uploaded_file_2)
+    # params[:space][:workspace_image_url_2] = cloudinary_file_2["url"]
+
+    uploaded_file_3 = params[:space][:workspace_image_url_3].path
+    cloudinary_file_3 = Cloudinary::Uploader.upload(uploaded_file_3)
+    # params[:space][:workspace_image_url_3] = cloudinary_file_3["url"]
+
+
+    image_urls = [cloudinary_file_1["url"],cloudinary_file_2["url"],cloudinary_file_3["url"]]
+
     @space = Space.new(space_params)
 
       if @space.save
+        image_urls.each do |url|
+          @space.images.create(attributes={url: url})
+        end
         redirect_to @space, notice: 'Space was successfully created.'
       else
         render :new
@@ -32,7 +51,34 @@ class SpacesController < ApplicationController
 
   # PATCH/PUT /spaces/1
   def update
+
+    uploaded_file_1 = params[:space][:workspace_image_url_1].path
+    cloudinary_file_1 = Cloudinary::Uploader.upload(uploaded_file_1)
+    # params[:space][:workspace_image_url_1] = cloudinary_file_1["url"]
+
+    uploaded_file_2 = params[:space][:workspace_image_url_2].path
+    cloudinary_file_2 = Cloudinary::Uploader.upload(uploaded_file_2)
+    # params[:space][:workspace_image_url_2] = cloudinary_file_2["url"]
+
+    uploaded_file_3 = params[:space][:workspace_image_url_3].path
+    cloudinary_file_3 = Cloudinary::Uploader.upload(uploaded_file_3)
+    # params[:space][:workspace_image_url_3] = cloudinary_file_3["url"]
+
+
+    params[:space][:image_urls] = [cloudinary_file_1["url"],cloudinary_file_2["url"],cloudinary_file_3["url"]]
+
+    puts "LOOK AT THIS>>>> #{params[:space][:image_ids]}"
+    puts "LOOK AT THIS AMENITIES>>>> #{params[:space][:amenity_urls]}"
+
+    # h.delete("a")
+    params[:space].delete(:workspace_image_url_1)
+    params[:space].delete(:workspace_image_url_2)
+    params[:space].delete(:workspace_image_url_3)
+
+    puts space_params.inspect
+
       if @space.update(space_params)
+
         redirect_to @space, notice: 'Space was successfully updated.'
       else
         render :edit

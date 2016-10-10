@@ -14,7 +14,14 @@ $(document).on('turbolinks:load', function() {
       $('#space_area_id').empty()
 
       for (var i = 0; i< data.length ; i++){
-        $('#space_area_id').append("<option value="+data[i].id+">"+data[i].name+"</option>")
+
+        if (i == 0) {
+          $('#space_area_id').append("<option selected value="+data[i].id+">"+data[i].name+"</option>")
+        }
+        else {
+          $('#space_area_id').append("<option value="+data[i].id+">"+data[i].name+"</option>")
+        }
+
       }
 
       // $('#' + data).empty()
