@@ -12,8 +12,7 @@ class CreateSpaces < ActiveRecord::Migration[5.0]
       t.integer :vibe_id
       t.integer :amenity_id
       t.integer :listing_id
-      t.decimal :price, precision: 13, scale:2
-
+      
       t.timestamps
     end
   end

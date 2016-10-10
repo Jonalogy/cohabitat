@@ -1,0 +1,2 @@
+class Shout < ApplicationRecord
+end

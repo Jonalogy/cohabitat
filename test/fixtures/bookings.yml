@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  space_id: 1
+  availability_id: 1
+  start: 2016-10-10
+  end: 2016-10-10
+  seat: 1
+  total_price: 9.99
+
+two:
+  space_id: 1
+  availability_id: 1
+  start: 2016-10-10
+  end: 2016-10-10
+  seat: 1
+  total_price: 9.99

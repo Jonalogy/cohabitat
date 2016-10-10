@@ -1,0 +1,47 @@
+<%= form_for(availability) do |f| %>
+  <% if availability.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(availability.errors.count, "error") %> prohibited this availability from being saved:</h2>
+
+      <ul>
+      <% availability.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :space_id %>
+    <%= f.number_field :space_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :start %>
+    <%= f.date_select :start %>
+  </div>
+
+  <div class="field">
+    <%= f.label :end %>
+    <%= f.date_select :end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :seat %>
+    <%= f.number_field :seat %>
+  </div>
+
+  <div class="field">
+    <%= f.label :seat_price %>
+    <%= f.text_field :seat_price %>
+  </div>
+
+  <div class="field">
+    <%= f.label :active %>
+    <%= f.check_box :active %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
