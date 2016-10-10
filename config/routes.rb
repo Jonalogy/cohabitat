@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :shouts
   resources :bookings
   resources :availabilities
   root 'main#index'
