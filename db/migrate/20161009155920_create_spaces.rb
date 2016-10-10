@@ -11,7 +11,6 @@ class CreateSpaces < ActiveRecord::Migration[5.0]
       t.integer :space_type_id
       t.integer :vibe_id
       t.integer :amenity_id
-      t.integer :listing_id
       
       t.timestamps
     end

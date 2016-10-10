@@ -47,6 +47,14 @@ class AreasController < ApplicationController
     redirect_to areas_url, notice: 'Area was successfully destroyed.'
   end
 
+  def area_of_country
+    @areas = Area.where(country_id: params[:country_id]).order('name ASC')
+    respond_to do |format|
+      format.json { render :json => @areas }
+    end
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_area

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post "login" => "sessions#create"
   delete "logout" => "sessions#destroy"
 
+  get "areaofcountry" => "areas#area_of_country"
+
   resources :spaces
   resources :amenities
   resources :likes
