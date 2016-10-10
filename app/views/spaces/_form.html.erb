@@ -20,14 +20,17 @@
 
   <div class="field">
     <strong><%= f.label :country %></strong>
-    <%= f.select :country_id, Country.all.order('name ASC').collect {|x| [x.name, x.id]}, {} %>
+    <%= f.select :country_id, Country.all.order('name ASC').collect {|x| [x.name, x.id]}, { include_blank: 'Please select country' } %>
   </div>
-
   <div class="field">
     <%= f.label :area_id %>
+    <% if :area_id %>
+      <%= f.select :area_id, Area.where(country_id: space.country_id).order('name ASC').collect {|x| [x.name, x.id]} %>
+    <% else :area_id %>
     <select class="" name="space[area_id]" id="space_area_id">
       <option disabled selected> Select country</option>
     </select>
+    <% end %>
   </div>
 
   <div class="field">
@@ -52,17 +55,17 @@
 
   <div class="field">
     <%= f.label :space_type_id %>
-    <%= f.number_field :space_type_id %>
+    <%= f.select :space_type_id, SpaceType.all.order('name ASC').collect {|x| [x.name, x.id]}, { include_blank: 'Please select space type' } %>
   </div>
 
   <div class="field">
     <%= f.label :vibe_id %>
-    <%= f.number_field :vibe_id %>
+    <%= f.select :vibe_id, Vibe.all.order('name ASC').collect {|x| [x.name, x.id]}, { include_blank: 'Please select vibe' } %>
   </div>
 
   <div class="field">
-    <%= f.label :amenity_id %>
-    <%= f.number_field :amenity_id %>
+    <%= f.label :amenities %><br/>
+    <%= f.select :amenity_ids, Amenity.all.collect {|x| [x.name,x.id]} , {}, :multiple => true %>
   </div>
 
   <div class="actions">

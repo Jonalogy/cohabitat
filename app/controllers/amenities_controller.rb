@@ -42,8 +42,7 @@ class AmenitiesController < ApplicationController
   # DELETE /amenities/1
   def destroy
     @amenity.destroy
-      redirect_to amenities_url, notice: 'Amenity was successfully destroyed.'
-    end
+    redirect_to amenities_url, notice: 'Amenity was successfully destroyed.'
   end
 
   private

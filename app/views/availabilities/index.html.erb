@@ -24,6 +24,7 @@
         <td><%= availability.seat %></td>
         <td><%= availability.seat_price %></td>
         <td><%= availability.active %></td>
+        <td><%= link_to 'Book', new_booking_path(avail_params: availability.id)%></td>
         <td><%= link_to 'Show', availability %></td>
         <td><%= link_to 'Edit', edit_availability_path(availability) %></td>
         <td><%= link_to 'Destroy', availability, method: :delete, data: { confirm: 'Are you sure?' } %></td>
