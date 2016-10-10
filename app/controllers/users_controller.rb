@@ -25,6 +25,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      session[:user_id] = @user.id
       redirect_to @user, notice: 'User was successfully created.'
     else
       render :new
@@ -33,6 +34,9 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
+    uploaded_file = params[:user][:profile_img_url].path
+    cloudinary_file = Cloudinary::Uploader.upload(uploaded_file)
+    params[:user][:profile_img_url] = cloudinary_file["url"]
       if @user.update(user_params)
         redirect_to @user, notice: 'User was successfully updated.'
       else
@@ -61,4 +65,5 @@ class UsersController < ApplicationController
     def show_user_params
       params.require(:user).permit(:email, :first_name, :last_name, :profile_img_url,  :bio)
     end
+
 end
