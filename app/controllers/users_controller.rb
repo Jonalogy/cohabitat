@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :is_authenticated, only:[:update, :destroy, :show, :edit]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -54,6 +55,10 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :password_digest, :first_name, :last_name, :profile_img_url, :wallet, :wallet, :bio)
+      params.require(:user).permit(:email, :password, :first_name, :last_name, :profile_img_url, :wallet, :bio)
+    end
+
+    def show_user_params
+      params.require(:user).permit(:email, :first_name, :last_name, :profile_img_url,  :bio)
     end
 end
