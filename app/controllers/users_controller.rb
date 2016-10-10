@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
 
-    redirect_to users_url, notice: 'User was successfully destroyed.'
+    redirect_to users_url, notice: 'User destroyed successfully'
   end
 
   private
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :password, :first_name, :last_name, :profile_img_url, :wallet, :bio)
+      params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :profile_img_url, :wallet, :bio)
     end
 
     def show_user_params
