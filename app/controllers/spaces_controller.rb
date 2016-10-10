@@ -22,20 +22,34 @@ class SpacesController < ApplicationController
   # POST /spaces
   def create
 
-    uploaded_file_1 = params[:space][:workspace_image_url_1].path
-    cloudinary_file_1 = Cloudinary::Uploader.upload(uploaded_file_1)
-    # params[:space][:workspace_image_url_1] = cloudinary_file_1["url"]
+    image_urls = []
+    if params[:space][:workspace_image_url_1]
+      uploaded_file_1 = params[:space][:workspace_image_url_1].path
+      cloudinary_file_1 = Cloudinary::Uploader.upload(uploaded_file_1)
+      image_urls << cloudinary_file_1["url"]
+    else
+      image_urls << ""
+    end
 
-    uploaded_file_2 = params[:space][:workspace_image_url_2].path
-    cloudinary_file_2 = Cloudinary::Uploader.upload(uploaded_file_2)
-    # params[:space][:workspace_image_url_2] = cloudinary_file_2["url"]
+    if params[:space][:workspace_image_url_2]
+      uploaded_file_2 = params[:space][:workspace_image_url_2].path
+      cloudinary_file_2 = Cloudinary::Uploader.upload(uploaded_file_2)
+      image_urls <<  cloudinary_file_2["url"]
+    else
+      image_urls << ""
+    end
 
-    uploaded_file_3 = params[:space][:workspace_image_url_3].path
-    cloudinary_file_3 = Cloudinary::Uploader.upload(uploaded_file_3)
-    # params[:space][:workspace_image_url_3] = cloudinary_file_3["url"]
+    if params[:space][:workspace_image_url_3]
+      uploaded_file_3 = params[:space][:workspace_image_url_3].path
+      cloudinary_file_3 = Cloudinary::Uploader.upload(uploaded_file_3)
+      image_urls << cloudinary_file_3["url"]
+    else
+      image_urls << ""
+    end
 
-
-    image_urls = [cloudinary_file_1["url"],cloudinary_file_2["url"],cloudinary_file_3["url"]]
+    params[:space].delete(:workspace_image_url_1)
+    params[:space].delete(:workspace_image_url_2)
+    params[:space].delete(:workspace_image_url_3)
 
     @space = Space.new(space_params)
 
@@ -51,33 +65,43 @@ class SpacesController < ApplicationController
 
   # PATCH/PUT /spaces/1
   def update
+    image_urls = []
+    current_image_urls = Image.where(space_id: params[:id]).order('created_at ASC')
+    if params[:space][:workspace_image_url_1]
+      uploaded_file_1 = params[:space][:workspace_image_url_1].path
+      cloudinary_file_1 = Cloudinary::Uploader.upload(uploaded_file_1)
+      image_urls << cloudinary_file_1["url"]
+    else
+      image_urls << current_image_urls[0].url
+    end
 
-    uploaded_file_1 = params[:space][:workspace_image_url_1].path
-    cloudinary_file_1 = Cloudinary::Uploader.upload(uploaded_file_1)
-    # params[:space][:workspace_image_url_1] = cloudinary_file_1["url"]
+    if params[:space][:workspace_image_url_2]
+      uploaded_file_2 = params[:space][:workspace_image_url_2].path
+      cloudinary_file_2 = Cloudinary::Uploader.upload(uploaded_file_2)
+      image_urls <<  cloudinary_file_2["url"]
+    else
+      image_urls << current_image_urls[1].url
+    end
 
-    uploaded_file_2 = params[:space][:workspace_image_url_2].path
-    cloudinary_file_2 = Cloudinary::Uploader.upload(uploaded_file_2)
-    # params[:space][:workspace_image_url_2] = cloudinary_file_2["url"]
+    if params[:space][:workspace_image_url_3]
+      uploaded_file_3 = params[:space][:workspace_image_url_3].path
+      cloudinary_file_3 = Cloudinary::Uploader.upload(uploaded_file_3)
+      image_urls << cloudinary_file_3["url"]
+    else
+      image_urls << current_image_urls[2].url
+    end
 
-    uploaded_file_3 = params[:space][:workspace_image_url_3].path
-    cloudinary_file_3 = Cloudinary::Uploader.upload(uploaded_file_3)
-    # params[:space][:workspace_image_url_3] = cloudinary_file_3["url"]
-
-
-    params[:space][:image_urls] = [cloudinary_file_1["url"],cloudinary_file_2["url"],cloudinary_file_3["url"]]
-
-    puts "LOOK AT THIS>>>> #{params[:space][:image_ids]}"
-    puts "LOOK AT THIS AMENITIES>>>> #{params[:space][:amenity_urls]}"
-
-    # h.delete("a")
     params[:space].delete(:workspace_image_url_1)
     params[:space].delete(:workspace_image_url_2)
     params[:space].delete(:workspace_image_url_3)
 
-    puts space_params.inspect
-
       if @space.update(space_params)
+
+        @images = Image.where(space_id: params[:id])
+
+        for i in (0...@images.length) do
+          @images[i].update(attributes={url: image_urls[i]})
+        end
 
         redirect_to @space, notice: 'Space was successfully updated.'
       else
