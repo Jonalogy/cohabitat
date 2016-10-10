@@ -11,19 +11,15 @@
     </div>
   <% end %>
 
+
   <div class="field">
-    <%= f.label :space_id %>
-    <%= f.number_field :space_id %>
+    <%= f.label :start_date %>
+    <%= f.date_field :start %>
   </div>
 
   <div class="field">
-    <%= f.label :start %>
-    <%= f.date_select :start %>
-  </div>
-
-  <div class="field">
-    <%= f.label :end %>
-    <%= f.date_select :end %>
+    <%= f.label :end_date %>
+    <%= f.date_field :end %>
   </div>
 
   <div class="field">
@@ -34,11 +30,6 @@
   <div class="field">
     <%= f.label :seat_price %>
     <%= f.text_field :seat_price %>
-  </div>
-
-  <div class="field">
-    <%= f.label :active %>
-    <%= f.check_box :active %>
   </div>
 
   <div class="actions">
