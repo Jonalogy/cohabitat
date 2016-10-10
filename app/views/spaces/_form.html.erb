@@ -64,9 +64,34 @@
   </div>
 
   <div class="field">
-    <%= f.label :amenities %><br/>
+    <%= f.label :amenities %>
     <%= f.select :amenity_ids, Amenity.all.collect {|x| [x.name,x.id]} , {}, :multiple => true %>
   </div>
+
+  <div>
+
+    <% @space.images.each do |image| %>
+      <%= f.label :workspace_image %>
+      <img src="<%= image.url %>" alt="" class="profileImg" />
+    <% end %>
+
+  </div>
+
+  <div class="field">
+    <%= f.label :add_workspace_image_1 %>
+    <%= f.file_field :workspace_image_url_1 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :add_workspace_image_2 %>
+    <%= f.file_field :workspace_image_url_2 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :add_workspace_image_3 %>
+    <%= f.file_field :workspace_image_url_3 %>
+  </div>
+
 
   <div class="actions">
     <%= f.submit %>

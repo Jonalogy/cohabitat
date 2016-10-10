@@ -1,11 +1,9 @@
 class Space < ApplicationRecord
   # has_many :likes
   # has_many :users, through:likes
-<<<<<<< HEAD
-  has_many  :shouts
-=======
-  has_many :availabilities
-  has_many :bookings
+
+  has_many :availabilities, dependent: :destroy
+  has_many :bookings, dependent: :destroy
 
   belongs_to :country
   belongs_to :area
@@ -14,6 +12,6 @@ class Space < ApplicationRecord
   belongs_to :vibe
   has_and_belongs_to_many :amenities
   has_many  :shouts
+  has_many :images
 
->>>>>>> 16cefa9e01bf38c9772f65a88ebca7e41fa10286
 end
