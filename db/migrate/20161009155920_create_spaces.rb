@@ -10,8 +10,7 @@ class CreateSpaces < ActiveRecord::Migration[5.0]
       t.text :space_description
       t.integer :space_type_id
       t.integer :vibe_id
-      t.integer :amenity_id
-      
+
       t.timestamps
     end
   end

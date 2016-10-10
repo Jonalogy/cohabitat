@@ -14,7 +14,7 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @availability = params[:avail_params]
-    puts ">>> Checking avail_params: #{@availability}"
+      #puts ">>> Checking avail_params: #{@availability}"
     @booking = Booking.new
   end
 
@@ -24,7 +24,13 @@ class BookingsController < ApplicationController
 
   # POST /bookings
   def create
-    @booking = Booking.new(booking_params)
+    puts ">>>Test params[:booking]=> #{params[:booking].inspect}"
+    puts ">>>Test params[:booking][:start]=> #{params[:booking][:start].inspect}"
+    puts ">>>Test params[:booking][:end]=> #{params[:booking][:end].inspect}"
+    puts ">>>Test params[:booking][:availability_id]=> #{params[:booking][:availability_id].inspect}"
+    @avail_id = params[:booking][:availability_id]
+
+    # @booking = Booking.new(booking_params)
 
       if @booking.save
         redirect_to @booking, notice: 'Booking was successfully created.'
@@ -57,5 +63,9 @@ class BookingsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
       params.require(:booking).permit(:space_id, :availability_id, :start, :end, :seat, :total_price)
+    end
+
+    def date_check
+
     end
 end
