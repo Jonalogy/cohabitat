@@ -17,7 +17,7 @@ class SpacesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create space" do
     assert_difference('Space.count') do
-      post spaces_url, params: { space: { address: @space.address, amenity_id: @space.amenity_id, area_id: @space.area_id, country_id: @space.country_id, listing_id: @space.listing_id, postal: @space.postal, price: @space.price, space_description: @space.space_description, space_name: @space.space_name, space_type_id: @space.space_type_id, user_id: @space.user_id, vibe_id: @space.vibe_id } }
+      post spaces_url, params: { space: { address: @space.address, area_id: @space.area_id, country_id: @space.country_id, listing_id: @space.listing_id, postal: @space.postal, price: @space.price, space_description: @space.space_description, space_name: @space.space_name, space_type_id: @space.space_type_id, user_id: @space.user_id, vibe_id: @space.vibe_id } }
     end
 
     assert_redirected_to space_url(Space.last)
@@ -34,7 +34,7 @@ class SpacesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update space" do
-    patch space_url(@space), params: { space: { address: @space.address, amenity_id: @space.amenity_id, area_id: @space.area_id, country_id: @space.country_id, listing_id: @space.listing_id, postal: @space.postal, price: @space.price, space_description: @space.space_description, space_name: @space.space_name, space_type_id: @space.space_type_id, user_id: @space.user_id, vibe_id: @space.vibe_id } }
+    patch space_url(@space), params: { space: { address: @space.address, area_id: @space.area_id, country_id: @space.country_id, listing_id: @space.listing_id, postal: @space.postal, price: @space.price, space_description: @space.space_description, space_name: @space.space_name, space_type_id: @space.space_type_id, user_id: @space.user_id, vibe_id: @space.vibe_id } }
     assert_redirected_to space_url(@space)
   end
 

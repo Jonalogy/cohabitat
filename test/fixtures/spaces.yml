@@ -10,7 +10,6 @@ one:
   space_description: MyText
   space_type_id: 1
   vibe_id: 1
-  amenity_id: 1
   listing_id: 1
   price: 9.99
 
@@ -24,6 +23,5 @@ two:
   space_description: MyText
   space_type_id: 1
   vibe_id: 1
-  amenity_id: 1
   listing_id: 1
   price: 9.99
