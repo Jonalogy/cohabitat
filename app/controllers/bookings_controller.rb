@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
+  # before_action :is_authenticated
 
   # GET /bookings
   def index
@@ -12,6 +13,8 @@ class BookingsController < ApplicationController
 
   # GET /bookings/new
   def new
+    @availability = params[:avail_params]
+    puts ">>> Checking avail_params: #{@availability}"
     @booking = Booking.new
   end
 

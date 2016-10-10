@@ -10,4 +10,6 @@ class Space < ApplicationRecord
   belongs_to :user
   belongs_to :vibe
   has_and_belongs_to_many :amenities
+  has_many  :shouts
+  
 end
