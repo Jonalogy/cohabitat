@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    
+
   end
 
   def create
@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if user
       session[:user_id] = user.id
       flash[:success] = "User logged in!!"
-      redirect_to show_path
+      redirect_to root_path
     else
       flash[:danger] = "Credentials Invalid!!"
       redirect_to login_path

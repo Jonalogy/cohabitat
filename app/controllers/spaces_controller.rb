@@ -1,9 +1,12 @@
 class SpacesController < ApplicationController
   before_action :set_space, only: [:show, :edit, :update, :destroy]
+  # before_action :is_authenticated
 
   # GET /spaces
   def index
-    @spaces = Space.all
+    # @spaces = Space.all
+    @user_id = session[:user_id]
+    @spaces = Space.where(:user_id => @user_id)
   end
 
   # GET /spaces/1
@@ -12,6 +15,7 @@ class SpacesController < ApplicationController
     puts ">>>params: #{params[:id].inspect}"
     @space_id = params[:id]
     @availabilities = Availability.where({space_id: @space_id, active: true})
+
   end
 
   # GET /spaces/new
