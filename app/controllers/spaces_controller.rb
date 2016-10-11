@@ -9,6 +9,9 @@ class SpacesController < ApplicationController
   # GET /spaces/1
   def show
     @shout = Shout.new
+    puts ">>>params: #{params[:id].inspect}"
+    @space_id = params[:id]
+    @availabilities = Availability.where({space_id: @space_id, active: true})
   end
 
   # GET /spaces/new

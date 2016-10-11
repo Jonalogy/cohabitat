@@ -1,62 +1,84 @@
 <p id="notice"><%= notice %></p>
+<h3>Space_<%="#{@space_id}"%></h3>
 
-<p>
-  <strong>Space name:</strong>
-  <%= @space.space_name %>
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8">
+      <% @space.images.order('id ASC').each do |image| %>
+      <img src="<%= image.url %>" alt="" class="profileImg" />
+      <% end %>
+    </div>
 
-<p>
-  <strong>User:</strong>
-  <%= @space.user.email %>
-</p>
+    <div class="col-md-4">
+      <p>
+        <strong>Space name:</strong>
+        <%= @space.space_name %></br>
+
+        <strong>User:</strong>
+        <%= @space.user.email %></br>
+
+        <strong>Country:</strong>
+        <%= @space.country.name %></br>
 
 
-<div>
-  <% @space.images.order('id ASC').each do |image| %>
-    <img src="<%= image.url %>" alt="" class="profileImg" />
-  <% end %>
+        <strong>Area:</strong>
+        <%= @space.area.name %></br>
+
+
+        <strong>Address:</strong>
+        <%= @space.address %></br>
+
+
+        <strong>Postal:</strong>
+        <%= @space.postal %></br>
+
+
+        <strong>Space description:</strong>
+        <%= @space.space_description %></br>
+
+
+        <strong>Space type:</strong>
+        <%= @space.space_type.name %></br>
+
+
+        <strong>Vibe:</strong>
+        <%= @space.vibe.name %></br>
+      </p>
+    </div>
+  </div>
 </div>
 
-<p>
-  <strong>Country:</strong>
-  <%= @space.country.name %>
-</p>
-
-<p>
-  <strong>Area:</strong>
-  <%= @space.area.name %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @space.address %>
-</p>
-
-<p>
-  <strong>Postal:</strong>
-  <%= @space.postal %>
-</p>
-
-<p>
-  <strong>Space description:</strong>
-  <%= @space.space_description %>
-</p>
-
-<p>
-  <strong>Space type:</strong>
-  <%= @space.space_type.name %>
-</p>
-
-<p>
-  <strong>Vibe:</strong>
-  <%= @space.vibe.name %>
-</p>
-
+<div class="container-fluid">
+  <div class="row">
+    <h4>Availabilities</h4>
+    <table>
+        <tr>
+          <th>Space</th>
+          <th>Start</th>
+          <th>End</th>
+          <th>Seat</th>
+          <th>Seat price</th>
+          <th colspan="3"></th>
+        </tr>
+      <tbody>
+        <% @availabilities.each do |availability| %>
+          <tr>
+            <td><%= availability.space_id %></td>
+            <td><%= availability.start %></td>
+            <td><%= availability.end %></td>
+            <td><%= availability.seat %></td>
+            <td><%= availability.seat_price %></td>
+            <td><%= link_to 'Book', new_booking_path({avail_id: availability.id, space_id: @space_id})%></td>
+            <td><%= link_to 'Show', availability %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <div>
-  <p>
-    <strong>Shouts</strong>
-  </p>
+  <h4>Shoutout</h4>
   <% @space.shouts.order('id DESC').each do |shout| %>
     <p>
       <%= shout.message %><br/>
@@ -69,26 +91,22 @@
   <% end %>
 </div>
 
-<p>
-
-</p>
-<% if @current_user %>
-  <%= form_for @shout do |f| %>
-    <input type="hidden" name="shout[user_id]" value="<%= @current_user.id %>">
-    <input type="hidden" name="shout[space_id]" value="<%= params[:id] %>">
-    <div class="field">
-      <%= f.label :shoutout %>
+  <% if @current_user %>
+    <%= form_for @shout do |f| %>
+      <input type="hidden" name="shout[user_id]" value="<%= @current_user.id %>">
+      <input type="hidden" name="shout[space_id]" value="<%= params[:id] %>">
+      <div class="field">
       <%= f.text_area :message %>
-    </div>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>
+      <a href="/login">Login</a> to give a shoutout to your favourite space!
+    </p>
   <% end %>
-<% else %>
-  <p>
-    <a href="/login">Login</a> to give a shoutout to your favourite space!
-  </p>
-<% end %>
 
 
 <%= link_to 'Edit', edit_space_path(@space) %> |
