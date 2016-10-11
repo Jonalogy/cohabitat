@@ -32,8 +32,26 @@ $(document).on('turbolinks:load', function() {
         }).done(function (data) {
           console.log("AJAX RETURNED DATA>>>>> "+data)
           $('.AJAXthis').empty()
+
+            // for (var i = 0 ; i < data.length) {
+            //   $('.AJAXthis').append()
+            //   <div class="col-xs-12 col-sm-6 col-md-4"><img class="search-space-image" src="<%= space.images[0].url %>" alt="" /></div>
+            //
+            //     <div class="col-xs-12 col-sm-6 col-md-4">
+            //       <img class="search-space-image" src="<%= space.images[0].url %>" alt="" />
+            //       <p><%= space.space_name %></p>
+            //       <p><%= space.space_type.name %>,<%= space.vibe.name %></p>
+            //     </div>
+            //
+            // }
+
+
+
           $('.AJAXthis').append(JSON.stringify(data))
-          // $('#space_area_id').empty()
+
+
+
+
           }).fail(function () {
             console.log("ajax failed")
           })

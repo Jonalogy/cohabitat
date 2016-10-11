@@ -29,13 +29,29 @@ class MainController < ApplicationController
     if params["amenities_ids"]
       params["amenities_ids"].each do |amenity|
         puts "amenity >>>>>>>>>>>> #{amenity}"
-        # NOT WORKING YET
-        @spaces = @spaces.includes(:amenities).where("spaces.amenity_id" => amenity)
+        # @spaces = @spaces.where(:space_id => Amenity.where(amenity_id: amenity))
+        # puts "LOOK HERE >>>>>>>>>> FIRST ONE #{@spaces.joins(amenities: :spaces)[0].inspect}"
+        # @spaces = @spaces.joins(amenities: :spaces).where(space_id: {amenity_id: amenity})
+        # puts "@spaces.includes(:amenities) >>>>>>>>>>>> #{@spaces.includes(:amenities).inspect}"
+        # @spaces = @spaces.includes(:amenities).where(amenity_id: amenity)
+        # User.where(:username => "Paul").includes(:domains).where("domains.name" => "paul-domain").limit(1)
+        @spaces = @spaces.includes(:amenities).where("amenities.id" => amenity)
       end
     end
 
-
     puts "LOOK HERE FOR SPACES FOUND >>>>>> #{@spaces.inspect}"
+    # @spaces.each do |space|
+    #   space[:vibe_name] = space.vibe.name
+    #   space[:space_type_name] = space.space_type.name
+    #
+    #   # puts "LOOK HERE THIS TIME FOR space ONLU >>> #{space.inspect} "
+    #   # puts "HERE HELLO space.is_a? Object >>>>> #{space.is_a? Object}"
+    #   # puts "LOOK HERE THIS TIME FOR space.vibe.name >>> #{space.vibe.name} "
+    #   # space.merge({:vibe => space.vibe.name, :space_type => space.space_type.name})
+    #   # space.merge!(vibe: space.vibe.name)
+    #   # space.merge!(space_type: space.space_type.name)
+    #   # space.inject({:vibe => space.vibe.name, :space_type => space.space_type.name})
+    # end
 
     render :json => @spaces
   end
