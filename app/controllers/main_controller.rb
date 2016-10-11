@@ -16,4 +16,28 @@ class MainController < ApplicationController
     end
   end
 
+  def search_filter
+    puts "LOOK HERE FOR params >>>>>> #{params.inspect}"
+
+    @spaces = Space.where(country_id: params["country_id"], area_id: params["area_id"])
+    if params["space_type_id"]
+      @spaces = @spaces.where(space_type_id: params["space_type_id"])
+    end
+    if params["vibe_id"]
+      @spaces = @spaces.where(vibe_id: params["vibe_id"])
+    end
+    if params["amenities_ids"]
+      params["amenities_ids"].each do |amenity|
+        puts "amenity >>>>>>>>>>>> #{amenity}"
+        # NOT WORKING YET
+        @spaces = @spaces.includes(:amenities).where("spaces.amenity_id" => amenity)
+      end
+    end
+
+
+    puts "LOOK HERE FOR SPACES FOUND >>>>>> #{@spaces.inspect}"
+
+    render :json => @spaces
+  end
+
 end
