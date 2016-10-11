@@ -39,10 +39,10 @@ ActiveRecord::Schema.define(version: 20161010060800) do
     t.date     "end"
     t.integer  "seat"
     t.decimal  "seat_price", precision: 13, scale: 2
-    t.boolean  "active"
+    t.boolean  "active",                              default: true
     t.integer  "booking_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
   end
 
   create_table "bookings", force: :cascade do |t|
