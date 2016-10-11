@@ -1,14 +1,29 @@
 <h1>Search results</h1>
-<% if @spaces.count > 0 %>
+<div class="center-content">
+  <% if @spaces.count > 0 %>
+  Filter by:
+  <%= select_tag :space_type_id, options_for_select(SpaceType.all.order('id ASC').collect {|x| [x.name, x.id]}.insert(0, "Space Type"))%>
+  <%= select_tag :vibe_id, options_for_select(Vibe.all.order('id ASC').collect {|x| [x.name, x.id]}.insert(0, "Vibe"))%>
+  <p>
+    <% Amenity.all.order('id ASC').collect.each do |amenity| %>
+    <%= check_box_tag "amenity_id[#{amenity.id}]", amenity.id, false, class: 'amenities_checkbox' %>
+    <%= amenity.name %>
+  <% end %>
+</div>
+
+</p>
   <p>
     Spaces found in <%= @spaces[0].area.name %>, <%= @spaces[0].country.name %>.
   </p>
   <% @spaces.each do |space| %>
+
     <div class="col-xs-12 col-sm-6 col-md-4">
       <img class="search-space-image" src="<%= space.images[0].url %>" alt="" />
       <p><%= space.space_name %></p>
+      <p><%= space.space_type.name %>,<%= space.vibe.name %></p>
     </div>
   <% end %>
+
 <% else %>
   <div class="">
     <p>

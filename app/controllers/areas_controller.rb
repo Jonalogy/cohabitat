@@ -9,7 +9,7 @@ class AreasController < ApplicationController
   # GET /areas/1
   def show
     @countries = Country.all
-    @areas = Area.all 
+    @areas = Area.all
   end
 
   # GET /areas/new
@@ -51,9 +51,7 @@ class AreasController < ApplicationController
 
   def area_of_country
     @areas = Area.where(country_id: params[:country_id]).order('name ASC')
-    respond_to do |format|
-      format.json { render :json => @areas }
-    end
+    render :json => @areas
   end
 
 
