@@ -13,8 +13,7 @@ class BookingsController < ApplicationController
 
   # GET /bookings/new
   def new
-    @availability = params[:avail_params]
-      #puts ">>> Checking avail_params: #{@availability}"
+    @availability = params[:avail_params] #Used to tag hidden_field with availability_id
     @booking = Booking.new
   end
 
@@ -28,33 +27,50 @@ class BookingsController < ApplicationController
     # puts ">>>Test params[:booking][:start]=> #{params[:booking][:start].inspect}"
     # puts ">>>Test params[:booking][:end]=> #{params[:booking][:end].inspect}"
     # puts ">>>Test params[:booking][:availability_id]=> #{params[:booking][:availability_id].inspect}"
-
     avail_id = params[:booking][:availability_id]
-    availability = Availability.find(avail_id)
-    @avail_start = availability.start #date format
-    @avail_end = availability.end
-    @avail_seat = availability.seat
+    @availability = Availability.find(avail_id)
+    @avail_start = @availability.start #date format
+    @avail_end = @availability.end
+    @avail_seat = @availability.seat
+    puts ">>>(@avail_start , @avail_end) => (#{@avail_start} , #{@avail_end})"
 
-    @book_start = params[:booking][:start]
-    # @book_end = params[:booking][:end]
-    # @book_seat = params[:booking][:seat]
+    @booking = Booking.new(booking_params)
+    @book_start = @booking.start
+    @book_end = @booking.end
+    @book_seat = @booking.seat
+    puts ">>>(@book_start , @book end) => (#{@book_start} , #{@book_end})"
 
-    # @booking = Booking.new(booking_params)
-    # @book_start = @booking.start
-    # @book_end = @booking.end
-    # @book_seat = @booking.seat
+    if @book_start >= @avail_start && @book_end <= @avail_end && @book_seat <= @avail_seat
+      if @booking.save
+        Availability.update(avail_id,:active=>false) # @availability.active = false
+        if @book_start == @avail_start && @book_end == @avail_end && @book_seat == @avail_seat
+          #if booking's start, end matches availability listing's:
+        elsif @book_start > @avail_start && @book_end < @avail_end && @book_seat < @avail_seat
+          seats_left =  @avail_seat - @book_seat
+          if @book_start > @avail_start #When booking happens later than availability
+            @new_avail = @availability.dup #duplicates instance
+            @new_avail.start = @avail_start
+            @new_avail.end = (@book_start-1)
+            @new_avail.seat = seats_left
+            Availability.create!(@new_avail.attributes)
+          end
 
-    puts ">>>@book_start #{@book_start.class}"
 
-    # if @book_start >= @avail_start && @book_end <= @avail_end && @book_seat <= @avail_seat
-      puts ">>> Tatatatatatata...."
-      #
-      # if @booking.save
-      #   redirect_to @booking, notice: 'Booking was successfully created.'
-      # else
-      #   render :new
-      # end
 
+
+        end
+        redirect_to @booking, notice: 'Booking was successfully created.'
+        # else
+        #   redirect_to availabilities_path
+      end # end of if @booking.save
+    elsif @book_start < @avail_start
+      redirect_to availabilities_path, notice: 'Booking date cannot be earlier than listing\'s start date, please try again'
+    elsif @book_end > @avail_end
+      redirect_to availabilities_path, notice: 'Booking date must not end later than listing\'s end date, please try again'
+    elsif @book_seat > @avail_seat
+      redirect_to availabilities_path, notice: "Listing consists only #{@avail_seat} seats. Please contact host for further assistance"
+    else
+      redirect_to availabilities_path, notice: 'Oops, booking parameters may be faulty, please try again'
     end
 
   end #create
