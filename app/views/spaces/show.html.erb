@@ -53,7 +53,6 @@
     <h4>Availabilities</h4>
     <table>
         <tr>
-          <th>Space</th>
           <th>Start</th>
           <th>End</th>
           <th>Seat</th>
@@ -63,7 +62,6 @@
       <tbody>
         <% @availabilities.each do |availability| %>
           <tr>
-            <td><%= availability.space_id %></td>
             <td><%= availability.start %></td>
             <td><%= availability.end %></td>
             <td><%= availability.seat %></td>
