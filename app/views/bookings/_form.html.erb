@@ -12,12 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :space_id %>
-    <%= f.number_field :space_id %>
+    <%=hidden_field(:booking, :space_id, options={ :value => @space_id } )%>
   </div>
 
   <div class="field">
-    <%=hidden_field(:booking, :availability_id, options={ :value => @availability } )%>
+    <%=hidden_field(:booking, :availability_id, options={ :value => @avail_id } )%>
   </div>
 
   <div class="field">
@@ -36,11 +35,18 @@
   </div>
 
   <div class="field">
-    <%= f.label :total_price %>
-    <%= f.text_field :total_price, :min => 0%>
+    <%=hidden_field(:booking, :total_price, options={ :value => @avail_id, :id => 'booking_total_price'} )%>
+  </div>
+
+  <div class="field">
+  <strong>Total Price: </strong> <span id="show_price"></span>
   </div>
 
   <div class="actions">
     <%= f.submit %>
+  </div>
+
+  <div class="field">
+    <%=hidden_field(:booking, :price, options={ :value => @seat_price, :id => 'seat_price' } )%>
   </div>
 <% end %>

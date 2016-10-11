@@ -1,6 +1,17 @@
 
 <h1>Main#home</h1>
-<p>Login to proceed</p>
+
+
+<%= form_tag(search_path, :method => "get", id: "search-form") do %>
+<!-- <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %> -->
+<%= select_tag :space_country_id, options_for_select(Country.all.order('id ASC').collect {|x| [x.name, x.id]}.insert(0, "Select a country"))%>
+<select name="space_area_id" id="space_area_id"><option value="">Select an area</option></select>
+<%= submit_tag "Search" %>
+<% end %>
+
+
+
+
 
 <%=link_to 'Login', login_path%>
 <%=link_to 'Register', new_user_path%>
