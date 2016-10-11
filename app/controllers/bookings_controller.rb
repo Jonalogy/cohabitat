@@ -29,6 +29,10 @@ class BookingsController < ApplicationController
     # puts ">>>Test params[:booking][:availability_id]=> #{params[:booking][:availability_id].inspect}"
     avail_id = params[:booking][:availability_id]
     @availability = Availability.find(avail_id)
+    if @availability.active == false
+      redirect_to availabilities_path, notice: 'Availability has expired, please select another.'
+      return
+    end
     @avail_start = @availability.start #date format
     @avail_end = @availability.end
     @avail_seat = @availability.seat
@@ -43,15 +47,32 @@ class BookingsController < ApplicationController
     if @book_start >= @avail_start && @book_end <= @avail_end && @book_seat <= @avail_seat
       if @booking.save
         Availability.update(avail_id,:active=>false) # @availability.active = false
-        if @book_start == @avail_start && @book_end == @avail_end && @book_seat < @avail_seat
+        if @book_start == @avail_start && @book_end == @avail_end && @book_seat == @avail_seat
+          redirect_to @booking, notice: 'Booking was successfully created.'
+        elsif @book_start == @avail_start && @book_end == @avail_end && @book_seat < @avail_seat
           #if booking's start, end matches availability listing's:
           seats_left =  @avail_seat - @book_seat
           @new_avail = @availability.dup #duplicates instance
           @new_avail.seat = seats_left
           @new_avail.active = true
           Availability.create!(@new_avail.attributes)
-
-        elsif @book_start > @avail_start && @book_end < @avail_end && @book_seat < @avail_seat
+        elsif (@book_start > @avail_start || @book_end < @avail_end) && @book_seat == @avail_seat
+          if @book_start > @avail_start #When booking happens later than availability
+            @new_avail_1 = @availability.dup #duplicates instance
+            @new_avail_1.start = @avail_start
+            @new_avail_1.end = (@book_start-1)
+            @new_avail_1.active = true
+            Availability.create!(@new_avail_1.attributes)
+          end
+          if @book_end < @avail_end
+            @new_avail_2 = @availability.dup #duplicates instance
+            @new_avail_2.start = (@book_end + 1)
+            @new_avail_2.end = @avail_end
+            @new_avail_2.active = true
+            Availability.create!(@new_avail_2.attributes)
+          end
+          redirect_to @booking, notice: 'Booking was successfully created.'
+        elsif (@book_start > @avail_start || @book_end < @avail_end) && @book_seat < @avail_seat
           seats_left =  @avail_seat - @book_seat
           @new_avail = @availability.dup #duplicates instance
           @new_avail.seat = seats_left
@@ -74,8 +95,6 @@ class BookingsController < ApplicationController
           end
           redirect_to @booking, notice: 'Booking was successfully created.'
         end
-        # else
-        #   redirect_to availabilities_path
       end # end of if @booking.save
     elsif @book_start < @avail_start
       redirect_to availabilities_path, notice: 'Booking date cannot be earlier than listing\'s start date, please try again'
@@ -115,7 +134,4 @@ class BookingsController < ApplicationController
       params.require(:booking).permit(:space_id, :availability_id, :start, :end, :seat, :total_price)
     end
 
-    def date_check
-
-    end
 end
