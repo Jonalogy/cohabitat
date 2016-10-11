@@ -1,9 +1,21 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Space name:</strong>
+  <%= @space.space_name %>
+</p>
+
+<p>
   <strong>User:</strong>
   <%= @space.user.email %>
 </p>
+
+
+<div>
+  <% @space.images.order('id ASC').each do |image| %>
+    <img src="<%= image.url %>" alt="" class="profileImg" />
+  <% end %>
+</div>
 
 <p>
   <strong>Country:</strong>
@@ -26,11 +38,6 @@
 </p>
 
 <p>
-  <strong>Space name:</strong>
-  <%= @space.space_name %>
-</p>
-
-<p>
   <strong>Space description:</strong>
   <%= @space.space_description %>
 </p>
@@ -44,6 +51,41 @@
   <strong>Vibe:</strong>
   <%= @space.vibe.name %>
 </p>
+
+
+<div>
+  <p>
+    <strong>Shouts</strong>
+  </p>
+  <% @space.shouts.order('id DESC').each do |shout| %>
+    <p>
+      <%= shout.message %><br/>
+      by <a href="/users/<%= shout.user.id %>/"><%= shout.user.first_name %></a>
+    </p>
+  <% end %>
+</div>
+
+<p>
+
+</p>
+<% if @current_user %>
+  <%= form_for @shout do |f| %>
+    <input type="hidden" name="shout[user_id]" value="<%= @current_user.id %>">
+    <input type="hidden" name="shout[space_id]" value="<%= params[:id] %>">
+    <div class="field">
+      <%= f.label :shoutout %>
+      <%= f.text_area :message %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+<% else %>
+  <p>
+    <a href="/login">Login</a> to give a shoutout to your favourite space!
+  </p>
+<% end %>
+
 
 <%= link_to 'Edit', edit_space_path(@space) %> |
 <%= link_to 'Back', spaces_path %>
