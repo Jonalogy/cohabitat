@@ -6,12 +6,9 @@ $(document).on('turbolinks:load', function() {
   var seat_price = $('#seat_price').val();
 
   $('#booking_seat').on('blur',function(){
-    var total = $('#booking_seat').val() * seat_price
-    $('#booking_total_price').val(total)
-    $('#show_price').text(total)
-
-  })//end of event listener
-
-
+      var total = $('#booking_seat').val() * seat_price
+      $('#booking_total_price').val(total)
+      $('#show_price').text(total)
+    })//end of event listener
 
 }) //end of DOM-Content-Loaded
