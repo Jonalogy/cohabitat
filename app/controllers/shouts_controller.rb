@@ -1,5 +1,6 @@
 class ShoutsController < ApplicationController
   before_action :set_shout, only: [:show, :edit, :update, :destroy]
+  before_action :if_owner, only: [:edit, :update, :destroy]
 
   # GET /shouts
   def index
@@ -33,7 +34,7 @@ class ShoutsController < ApplicationController
   # PATCH/PUT /shouts/1
   def update
       if @shout.update(shout_params)
-        redirect_to @shout, notice: 'Shout was successfully updated.'
+        redirect_to space_path(@shout.space), notice: 'Shout was successfully updated.'
       else
         render :edit
       end
@@ -47,6 +48,20 @@ class ShoutsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def if_owner
+      unless
+        @shout = Shout.find(params[:id])
+      end
+    end
+
+
+    def if_owner
+      unless @shout.user_id == current_user.id
+        flash.now[:danger] = "Not owner! No Access!"
+        redirect_to root_path
+      end
+    end
+
     def set_shout
       @shout = Shout.find(params[:id])
     end
