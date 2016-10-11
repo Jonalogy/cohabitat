@@ -63,6 +63,7 @@
       by <a href="/users/<%= shout.user.id %>/"><%= shout.user.first_name %></a>
       <% if shout.user_id == @current_user.id %>
       <%= link_to 'Edit', edit_shout_path(shout) %>
+      <%= link_to 'Delete', shout, method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
     </p>
   <% end %>

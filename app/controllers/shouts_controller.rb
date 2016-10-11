@@ -25,7 +25,7 @@ class ShoutsController < ApplicationController
     @shout = Shout.new(shout_params)
 
       if @shout.save
-        redirect_to @shout, notice: 'Shout was successfully created.'
+        redirect_to space_path(@shout.space), notice: 'Shout was successfully created.'
       else
         render :new
       end
@@ -43,7 +43,7 @@ class ShoutsController < ApplicationController
   # DELETE /shouts/1
   def destroy
     @shout.destroy
-    redirect_to shouts_url, notice: 'Shout was successfully destroyed.'
+    redirect_to space_path(@shout.space), notice: 'Shout was successfully destroyed.'
   end
 
   private
