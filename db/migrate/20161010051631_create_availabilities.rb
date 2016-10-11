@@ -6,8 +6,7 @@ class CreateAvailabilities < ActiveRecord::Migration[5.0]
       t.date :end
       t.integer :seat
       t.decimal :seat_price, precision: 13, scale: 2
-      t.boolean :active
-      t.integer :booking_id
+      t.boolean :active, :default => true
 
       t.timestamps
     end

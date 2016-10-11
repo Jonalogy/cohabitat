@@ -4,7 +4,7 @@ class AvailabilitiesController < ApplicationController
 
   # GET /availabilities
   def index
-    @availabilities = Availability.all
+    @availabilities = Availability.where(:active => true)
   end
 
   # GET /availabilities/1
