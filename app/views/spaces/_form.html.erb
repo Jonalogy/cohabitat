@@ -59,7 +59,7 @@
   </div>
 
   <div>
-    <% @space.images.order('created_at ASC').each do |image| %>
+    <% @space.images.order('id ASC').each do |image| %>
       <!-- <input type="hidden" name="space[user_id]" value="<%= @current_user.id %>"> -->
       <img src="<%= image.url %>" alt="" class="profileImg" />
     <% end %>

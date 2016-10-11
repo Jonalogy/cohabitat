@@ -8,6 +8,7 @@ class SpacesController < ApplicationController
 
   # GET /spaces/1
   def show
+    @shout = Shout.new
   end
 
   # GET /spaces/new
