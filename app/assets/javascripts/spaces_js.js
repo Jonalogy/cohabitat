@@ -24,24 +24,9 @@ $(document).on('turbolinks:load', function() {
 
       }
 
-      // $('#' + data).empty()
-      // message to be appended if friend request list is empty after ajax
       }).fail(function () {
         console.log("failed")
       })
-
-    //
-    // $.ajax({
-    //   url: '/areas',
-    //   type: 'PUT',
-    //   data: {country_selected: this.value},
-    //   dataType: 'json'
-    // }).done(function (data) {
-    //   $('#' + data).empty()
-    //   // message to be appended if friend request list is empty after ajax
-    //   }).fail(function () {
-    //
-    //   })
 
   })
 

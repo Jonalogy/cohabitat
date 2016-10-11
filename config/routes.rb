@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :bookings
   resources :availabilities
   root 'main#index'
-  get 'show' => 'main#show'
+  get 'search' => 'main#show'
 
   get "login" => "sessions#new"
   post "login" => "sessions#create"
