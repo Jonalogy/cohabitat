@@ -15,4 +15,9 @@ class MainController < ApplicationController
     end
   end
 
+  def schedule
+    @user_id = @current_user.id
+    @availabilities = Availability.where()
+  end
+
 end

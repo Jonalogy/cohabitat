@@ -1,0 +1,19 @@
+
+<h1>Schedule</h1>
+
+<div class="container-fluid">
+<div class="row">
+    <h3>Upcoming</h3>
+    <h3>Session= <%="#{@current_user.id.inspect}"%></h3>
+
+</div>
+</div>
+
+
+
+
+
+
+<%=link_to 'Login', login_path%>
+<%=link_to 'Register', new_user_path%>
+<%=link_to 'Logout', logout_path, method: :delete%>
