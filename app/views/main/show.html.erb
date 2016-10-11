@@ -1,3 +1,24 @@
-<h1>About Page</h1>
-<%= @spaces.inspect %>
-<%=link_to 'Logout', logout_path, method: :delete%>
+<h1>Search results</h1>
+<% if @spaces.count > 0 %>
+  <p>
+    Spaces found in <%= @spaces[0].area.name %>, <%= @spaces[0].country.name %>.
+  </p>
+  <% @spaces.each do |space| %>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <img class="search-space-image" src="<%= space.images[0].url %>" alt="" />
+      <p><%= space.space_name %></p>
+    </div>
+  <% end %>
+<% else %>
+  <div class="">
+    <p>
+      No listing found. Try searching again.
+    </p>
+    <%= form_tag(search_path, :method => "get", id: "search-form") do %>
+    <!-- <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %> -->
+    <%= select_tag :space_country_id, options_for_select(Country.all.order('id ASC').collect {|x| [x.name, x.id]}.insert(0, "Select a country"))%>
+    <select name="space_area_id" id="space_area_id"><option value="">Select an area</option></select>
+    <%= submit_tag "Search" %>
+    <% end %>
+  </div>
+<% end %>
