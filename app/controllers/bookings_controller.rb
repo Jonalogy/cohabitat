@@ -59,6 +59,7 @@ class BookingsController < ApplicationController
           @new_avail.seat = seats_left
           @new_avail.active = true
           Availability.create!(@new_avail.attributes)
+          redirect_to @booking, notice: 'Booking was successfully created.'
         elsif (@book_start > @avail_start || @book_end < @avail_end) && @book_seat == @avail_seat
           if @book_start > @avail_start #When booking happens later than availability
             @new_avail_1 = @availability.dup #duplicates instance

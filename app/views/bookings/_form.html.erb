@@ -35,8 +35,11 @@
   </div>
 
   <div class="field">
-    <%= f.label :total_price %>
-    <%= f.text_field :total_price, :min => 0%>
+    <%=hidden_field(:booking, :total_price, options={ :value => @avail_id, :id => 'booking_total_price'} )%>
+  </div>
+
+  <div class="field">
+  <strong>Total Price: </strong> <span id="show_price"></span>
   </div>
 
   <div class="actions">
