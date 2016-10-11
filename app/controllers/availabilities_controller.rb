@@ -13,12 +13,14 @@ class AvailabilitiesController < ApplicationController
 
   # GET /availabilities/new
   def new
-
+    @space_id = params[:space_id]
     @availability = Availability.new
   end
 
   # GET /availabilities/1/edit
   def edit
+    @space_id = @availability[:space_id]
+    puts ">>>edit space_id: #{@space_id}"
   end
 
   # POST /availabilities
