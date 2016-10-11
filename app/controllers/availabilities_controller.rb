@@ -9,6 +9,8 @@ class AvailabilitiesController < ApplicationController
 
   # GET /availabilities/1
   def show
+    @space = Space.find(@availability.space_id)
+
   end
 
   # GET /availabilities/new
