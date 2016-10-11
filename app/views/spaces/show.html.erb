@@ -60,7 +60,6 @@
           <th>Seat price</th>
           <th colspan="3"></th>
         </tr>
-
       <tbody>
         <% @availabilities.each do |availability| %>
           <tr>
@@ -69,7 +68,7 @@
             <td><%= availability.end %></td>
             <td><%= availability.seat %></td>
             <td><%= availability.seat_price %></td>
-            <td><%= link_to 'Book', new_booking_path(avail_params: availability.id)%></td>
+            <td><%= link_to 'Book', new_booking_path({avail_id: availability.id, space_id: @space_id})%></td>
             <td><%= link_to 'Show', availability %></td>
           </tr>
         <% end %>

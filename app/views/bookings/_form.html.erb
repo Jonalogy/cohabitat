@@ -12,12 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :space_id %>
-    <%= f.number_field :space_id %>
+    <%=hidden_field(:booking, :space_id, options={ :value => @space_id } )%>
   </div>
 
   <div class="field">
-    <%=hidden_field(:booking, :availability_id, options={ :value => @availability } )%>
+    <%=hidden_field(:booking, :availability_id, options={ :value => @avail_id } )%>
   </div>
 
   <div class="field">
@@ -42,5 +41,9 @@
 
   <div class="actions">
     <%= f.submit %>
+  </div>
+
+  <div class="field">
+    <%=hidden_field(:booking, :price, options={ :value => @seat_price, :id => 'seat_price' } )%>
   </div>
 <% end %>
