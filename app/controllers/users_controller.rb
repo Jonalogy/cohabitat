@@ -35,9 +35,14 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    uploaded_file = params[:user][:profile_img_url].path
-    cloudinary_file = Cloudinary::Uploader.upload(uploaded_file)
-    params[:user][:profile_img_url] = cloudinary_file["url"]
+    
+    if params[:user][:profile_img_url]
+      uploaded_file = params[:user][:profile_img_url].path
+      cloudinary_file = Cloudinary::Uploader.upload(uploaded_file)
+      params[:user][:profile_img_url] = cloudinary_file["url"]
+    else
+      params[:user][:profile_img_url] =""
+    end
       if @user.update(user_params)
         redirect_to @user, notice: 'User was successfully updated.'
       else
