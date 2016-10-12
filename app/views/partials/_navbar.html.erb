@@ -11,20 +11,30 @@
           <!-- Links -->
           <ul class="nav navbar-nav pull-xs-right">
 
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Host</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Manage Space</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/schedule">Add Space</a>
+              </div>
+            </li>
 
             <% if @current_user %>
 
-            <li class="nav-item"><a class="nav-link" href="/schedule">Schedule</a></li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Host</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%= @current_user.email %></a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Edit Profile</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/schedule">Schedule</a>
+              </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/spaces">Manage Space</a>
 
-            </li>
             <li class="nav-item">
               <%= link_to 'Logout', logout_path, method: :delete, class: 'nav-link' %>
             </li>
+
 
             <% else %>
 
@@ -36,7 +46,6 @@
             </li>
 
             <% end %>
-
 
           </ul>
         </div>
