@@ -20,7 +20,7 @@
         <td><%= availability.end %></td>
         <td><%= availability.seat %></td>
         <td><%= availability.seat_price %></td>
-        <td><%= link_to 'Book', new_booking_path(avail_id: availability.id)%></td>
+        <td><%= link_to 'Book', new_booking_path(avail_id: availability.id, space_id: availability.space_id)%></td>
         <td><%= link_to 'Show', availability %></td>
         <td><%= link_to 'Edit', edit_availability_path(availability) %></td>
         <td><%= link_to 'Destroy', availability, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -32,3 +32,4 @@
 <br>
 
 <%= link_to 'New Availability', new_availability_path %>
+<%= link_to 'Logout', logout_path, method: :delete %>
