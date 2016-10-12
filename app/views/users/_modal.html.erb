@@ -1,0 +1,44 @@
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Sign Up</h4>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <%= f.label :email, "Email", class: "col-lg-3 control-label" %>
+          <div class="col-lg-9">
+            <%= f.text_field :email %>
+          </div>
+        </div>
+        <br>
+
+
+        <div class="form-group">
+          <%= f.label :password, "Password", class: "col-lg-3 control-label" %>
+          <div class="col-lg-9">
+            <%= f.password_field :password %>
+          </div>
+        </div>
+        <br>
+
+        <div class="form-group">
+          <%= f.label :password_confirmation, "Password", class: "col-lg-3 control-label" %>
+          <div class="col-lg-9">
+            <%= f.password_field :password_confirmation %>
+          </div>
+        </div>
+        <br>
+
+        <div class="form-group">
+          <div class="col-lg-9">
+            <button type="button" class="btn btn-default" data-dismiss="modal"></button> -->
+            <%= f.submit "Signup", class: "btn btn-default" %>
+          </div>
+        </div>
+      </div>

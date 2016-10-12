@@ -16,6 +16,13 @@
 
  @import "bootstrap";
 
+ .nav > li > a:hover{
+     background-color:#f2f2f2;
+ }
+
+ .navbar{
+    background-color:white;
+  }
 
 .center-content {
 text-align: center;
