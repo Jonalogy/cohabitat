@@ -32,5 +32,8 @@
   <%= @availability.active %>
 </p>
 
-<%= link_to 'Edit', edit_availability_path(@availability) %> |
-<%= link_to 'Back', availabilities_path %>
+<%if @current_user.id == @space.user_id%>
+  <%= link_to 'Edit', edit_availability_path(@availability) %> |
+<%end%>
+<%= link_to "back", space_path(id: @availability.space_id) %>
+<%# link_to 'Back', availabilities_path %>

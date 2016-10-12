@@ -1,5 +1,6 @@
-<h1>Main#home</h1>
+<h5>Session user_id:  <%=@current_user.id.inspect%></h5>
 
+<h1>Main#home</h1>
 
 <%= form_tag(search_path, :method => "get", id: "search-form") do %>
 <!-- <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %> -->
