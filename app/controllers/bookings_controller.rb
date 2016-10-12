@@ -14,6 +14,7 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @avail_id = params[:avail_id] #Used to tag hidden_field with availability_id
+
     availability = Availability.find(@avail_id)
     @seat_price = availability.seat_price
     @space_id = params[:space_id]
@@ -39,19 +40,22 @@ class BookingsController < ApplicationController
     @avail_start = @availability.start #date format
     @avail_end = @availability.end
     @avail_seat = @availability.seat
-    puts ">>>(@avail_start , @avail_end) => (#{@avail_start} , #{@avail_end})"
 
     @booking = Booking.new(booking_params)
+    @booking.user_id = session[:user_id]
+
     @book_start = @booking.start
     @book_end = @booking.end
     @book_seat = @booking.seat
+
+    puts ">>>(@avail_start , @avail_end) => (#{@avail_start} , #{@avail_end})"
     puts ">>>(@book_start , @book end) => (#{@book_start} , #{@book_end})"
 
     if @book_start >= @avail_start && @book_end <= @avail_end && @book_seat <= @avail_seat
-      if @booking.save
+      if @booking.save!
         Availability.update(avail_id,:active=>false) # @availability.active = false
         if @book_start == @avail_start && @book_end == @avail_end && @book_seat == @avail_seat
-          redirect_to @booking, notice: 'Booking was successfully created.'
+          redirect_to availabilities_path, notice: 'Booking was successfully created.'
         elsif @book_start == @avail_start && @book_end == @avail_end && @book_seat < @avail_seat
           #if booking's start, end matches availability listing's:
           seats_left =  @avail_seat - @book_seat
@@ -59,7 +63,7 @@ class BookingsController < ApplicationController
           @new_avail.seat = seats_left
           @new_avail.active = true
           Availability.create!(@new_avail.attributes)
-          redirect_to @booking, notice: 'Booking was successfully created.'
+          redirect_to availabilities_path, notice: 'Booking was successfully created.'
         elsif (@book_start > @avail_start || @book_end < @avail_end) && @book_seat == @avail_seat
           if @book_start > @avail_start #When booking happens later than availability
             @new_avail_1 = @availability.dup #duplicates instance
@@ -75,7 +79,7 @@ class BookingsController < ApplicationController
             @new_avail_2.active = true
             Availability.create!(@new_avail_2.attributes)
           end
-          redirect_to @booking, notice: 'Booking was successfully created.'
+          redirect_to availabilities_path, notice: 'Booking was successfully created.'
         elsif (@book_start > @avail_start || @book_end < @avail_end) && @book_seat < @avail_seat
           seats_left =  @avail_seat - @book_seat
           @new_avail = @availability.dup #duplicates instance
@@ -97,7 +101,7 @@ class BookingsController < ApplicationController
             @new_avail_2.active = true
             Availability.create!(@new_avail_2.attributes)
           end
-          redirect_to @booking, notice: 'Booking was successfully created.'
+          redirect_to availabilities_path, notice: 'Booking was successfully created.'
         end
       end # end of if @booking.save
     elsif @book_start < @avail_start

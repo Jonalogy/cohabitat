@@ -66,12 +66,15 @@
             <td><%= availability.end %></td>
             <td><%= availability.seat %></td>
             <td><%= availability.seat_price %></td>
-            <td><%= link_to 'Book', new_booking_path({avail_id: availability.id, space_id: @space_id})%></td>
+            <td><%= link_to 'Edit', edit_availability_path(availability) %></td>
             <td><%= link_to 'Show', availability %></td>
+            <td><%= link_to 'Destroy', availability, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
+    <td><%= link_to 'New', new_availability_path(space_id: @space.id)%></td>
+
   </div>
 </div>
 
@@ -109,3 +112,4 @@
 
 <%= link_to 'Edit', edit_space_path(@space) %> |
 <%= link_to 'Back', spaces_path %>
+<%= link_to 'Logout', logout_path, method: :delete %>

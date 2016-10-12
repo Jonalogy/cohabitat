@@ -1,8 +1,10 @@
+<h5>Session user_id:  <%=@current_user.id.inspect%></h5>
+
 <p id="notice"><%= notice %></p>
 
 <p>
   <strong>Space:</strong>
-  <%= @availability.space_id %>
+  <%= @space[:space_name] %>
 </p>
 
 <p>

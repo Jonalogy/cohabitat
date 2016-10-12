@@ -12,8 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :space_id %>
-    <%= f.number_field :space_id %>
+    <%=hidden_field(:availability, :space_id, options={ :value => @space_id } )%>
   </div>
 
   <div class="field">

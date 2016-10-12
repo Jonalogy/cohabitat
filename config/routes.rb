@@ -4,12 +4,14 @@ Rails.application.routes.draw do
   resources :availabilities
   root 'main#index'
   get 'search' => 'main#show'
+  get 'schedule' => 'main#schedule'
 
   get "login" => "sessions#new"
   post "login" => "sessions#create"
   delete "logout" => "sessions#destroy"
 
   get "areaofcountry" => "areas#area_of_country"
+  get "searchfilter" => "main#search_filter"
 
   resources :spaces
   resources :amenities

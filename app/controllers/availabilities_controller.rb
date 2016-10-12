@@ -5,20 +5,26 @@ class AvailabilitiesController < ApplicationController
   # GET /availabilities
   def index
     @availabilities = Availability.where(:active => true)
+
+    #>>>>>>create private Space_name method
   end
 
   # GET /availabilities/1
   def show
+    @space = Space.find(@availability.space_id)
+
   end
 
   # GET /availabilities/new
   def new
-
+    @space_id = params[:space_id]
     @availability = Availability.new
   end
 
   # GET /availabilities/1/edit
   def edit
+    @space_id = @availability[:space_id]
+    puts ">>>edit space_id: #{@space_id}"
   end
 
   # POST /availabilities
@@ -56,4 +62,5 @@ class AvailabilitiesController < ApplicationController
     def availability_params
       params.require(:availability).permit(:space_id, :start, :end, :seat, :seat_price, :active)
     end
+
 end
