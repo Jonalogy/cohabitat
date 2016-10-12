@@ -22,6 +22,11 @@ $(document).on('turbolinks:load', function() {
       }
     }
 
+    if (($("#start_date").val() != "") && ($("#end_date").val() != "")){
+      filter_options["start_date"] = $("#start_date").val()
+      filter_options["end_date"] = $("#end_date").val()
+    }
+
     console.log("filter_options: "+ JSON.stringify(filter_options))
 
         $.ajax({

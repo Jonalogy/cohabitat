@@ -9,6 +9,7 @@ class BookingsController < ApplicationController
 
   # GET /bookings/1
   def show
+
   end
 
   # GET /bookings/new
@@ -18,6 +19,7 @@ class BookingsController < ApplicationController
     @availability = Availability.find(@avail_id)
     @seat_price = @availability.seat_price
     @space_id = params[:space_id]
+    @space_name = Space.find(@space_id).space_name
     @booking = Booking.new
   end
 

@@ -2,8 +2,8 @@
 <div class="center-content">
   <% if @spaces.count > 0 %>
   Filter by:
-  <%= select_tag :space_type_id, options_for_select(SpaceType.all.order('id ASC').collect {|x| [x.name, x.id]}.insert(0, "Space Type")),class: 'filter_options' %>
-  <%= select_tag :vibe_id, options_for_select(Vibe.all.order('id ASC').collect {|x| [x.name, x.id]}.insert(0, "Vibe")), class: 'filter_options'%>
+  <%= select_tag :space_type_id, options_for_select(SpaceType.all.order('id ASC').collect {|x| [x.name, x.id]}.insert(0, "Space Type")),class: 'filter_options styled-dropdown' %>
+  <%= select_tag :vibe_id, options_for_select(Vibe.all.order('id ASC').collect {|x| [x.name, x.id]}.insert(0, "Vibe")), class: 'filter_options styled-dropdown'%>
   <p>
     Amenities:
     <% Amenity.all.order('id ASC').collect.each do |amenity| %>
@@ -12,6 +12,10 @@
       <%= amenity.name %>
     </label>
   <% end %>
+  <div class="">
+    Start <%= date_field_tag :start_date, "", class: 'filter_options', id: 'start_date'%>
+    End <%= date_field_tag :start_date,"", class: 'filter_options', id: 'end_date'%>
+  </div>
 </div>
 
 </p>

@@ -30,7 +30,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :seat %>
+    <%= f.label :pax %>
     <%= f.number_field :seat, :value =>@availability.seat, :min => 1  %>
   </div>
 
@@ -39,7 +39,7 @@
   </div>
 
   <div class="field">
-  <strong>Total Price: </strong> <span id="show_price">$<%=(@availability.seat)*(@availability.seat_price)%></span>
+  Total Price: <strong> <span id="show_price">$<%=(@availability.seat)*(@availability.seat_price)%></span></strong>
   </div>
 
   <div class="actions">

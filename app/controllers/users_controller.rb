@@ -26,7 +26,8 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to @user, notice: 'User was successfully created.'
+      flash[:success] = "Account successfully created. Please fill in your details."
+      redirect_to edit_user_path(@user)
     else
       render :new
     end

@@ -53,17 +53,26 @@
     <%= f.select :vibe_id, Vibe.all.order('name ASC').collect {|x| [x.name, x.id]}, { include_blank: 'Please select vibe' } %>
   </div>
 
-  <div class="field">
-    <%= f.label :amenities %>
-    <%= f.select :amenity_ids, Amenity.all.collect {|x| [x.name,x.id]} , {}, :multiple => true %>
-  </div>
-
   <div>
     <% @space.images.order('id ASC').each do |image| %>
       <!-- <input type="hidden" name="space[user_id]" value="<%= @current_user.id %>"> -->
       <img src="<%= image.url %>" alt="" class="profileImg" />
     <% end %>
   </div>
+
+  <div class="field">
+    <%= f.label :amenities %>
+    <%= f.select :amenity_ids, Amenity.all.collect {|x| [x.name,x.id]} , {}, :multiple => true %>
+  </div>
+</div>
+
+
+<!-- <% Amenity.all.collect.each do |amenity| %>
+  <%= f.label amenity.name %>
+  <%= f.check_box  :amenity_ids, {:multiple => true} %>
+
+<% end %> -->
+
 
   <div class="field">
     <%= f.label :add_workspace_image_1 %>
@@ -82,6 +91,7 @@
 
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit nil, class: "btn" %>
+
   </div>
 <% end %>
