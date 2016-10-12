@@ -1,22 +1,36 @@
-<h1>Main#home</h1>
 
-<%= form_tag(search_path, :method => "get", id: "search-form") do %>
-<!-- <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %> -->
-<%= select_tag :space_country_id, options_for_select(Country.all.order('id ASC').collect {|x| [x.name, x.id]}.insert(0, "Select a country"))%>
-<select name="space_area_id" id="space_area_id"><option value="">Select an area</option></select>
-<%= submit_tag "Search" %>
-<% end %>
+<%= image_tag("space.jpg", alt: "coworkingspace") %>
 
-<% @spaces.each do |space| %>
-
-  <div class="col-xs-12 col-sm-6 col-md-4">
-    <img class="search-space-image" src="<%= space.images[0].url %>" alt="" />
-    <p><a href='spaces/<%=space.id%>'><%= space.space_name %></a></p>
-    <p><%= space.space_type.name %>,<%= space.vibe.name %></p>
+<div class="center-content">
+  <div class="header">
+    <h2>Co-Habitat.</h2>
+    <h5>Join us in revolutionizing workspaces.</h5>
   </div>
-<% end %>
+  <div class="col-xs-10 offset-xs-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 form-bar">
+    <h6>Find a Habitat:</h6>
+    <%= form_tag(search_path, :method => "get", id: "search-form") do %>
+    <!-- <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %> -->
+    <div class="">
+
+    </div>
+    <%= select_tag :space_country_id, options_for_select(Country.all.order('id ASC').collect {|x| [x.name, x.id]}.insert(0, "Select a country")), class: "dropdown-list"%>
+    <select name="space_area_id" id="space_area_id" class="dropdown-toggle"><option value="">Select an area</option></select>
+    <%= submit_tag "Search", class: "btn btn-secondary" %>
+    <% end %>
+
+  </div>
+
+    <% @spaces.each do |space| %>
+
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <img class="search-space-image" src="<%= space.images[0].url %>" alt="" />
+        <p><%= space.space_name %></p>
+        <p><%= space.space_type.name %>,<%= space.vibe.name %></p>
+      </div>
+    <% end %>
 
 
+</div>
 
-<%=link_to 'Login', login_path%>
-<%=link_to 'Register', new_user_path%>
+<!-- <%=link_to 'Login', login_path%>
+<%=link_to 'Register', new_user_path%> -->

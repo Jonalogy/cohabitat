@@ -10,16 +10,34 @@
           <a class="navbar-brand" href="/">Cohabitat</a>
           <!-- Links -->
           <ul class="nav navbar-nav pull-xs-right">
+
+
+            <% if @current_user %>
+
             <li class="nav-item"><a class="nav-link" href="/schedule">Schedule</a></li>
             <li class="nav-item">
-              <a class="nav-link" href="/spaces">Manage Space</a>
+              <a class="nav-link" href="#">Host</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/spaces">Manage Space</a>
+
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Logout', logout_path, method: :delete, class: 'nav-link' %>
+            </li>
+
+            <% else %>
+
             <li class="nav-item">
               <a class="nav-link" href="/users/new">Sign Up</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/login">Log In</a>
             </li>
+
+            <% end %>
+
+
           </ul>
         </div>
       </nav>

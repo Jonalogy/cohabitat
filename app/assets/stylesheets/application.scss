@@ -16,6 +16,13 @@
 
  @import "bootstrap";
 
+ .nav > li > a:hover{
+     background-color:#f2f2f2;
+ }
+
+ .navbar{
+    background-color:white;
+  }
 
 .center-content {
 text-align: center;
@@ -23,4 +30,21 @@ text-align: center;
 
 .checkboxSpacer {
   padding: 0.3em
+}
+
+.form-bar {
+  border:1px solid grey;
+  padding:2em
+}
+
+select {
+  border: 1px solid #ccc;
+  font-size: 16px;
+  height: 38px;
+  width: 200px;
+  margin: 0.3em 0
+}
+
+.alert {
+  border-radius: 0;
 }
