@@ -11,8 +11,8 @@
     </br>
       <strong>Space Name:</strong> <%=@spaces_hash[booking.space_id]%>
       <strong>Seats:</strong> <%=booking.seat%></br>
-      <strong>Starting:</strong> <%=booking.start%>
-      <strong>Ending:</strong> <%=booking.end%></br></br>
+      <strong>Starting:</strong> <%=booking.start.strftime("%d-%b-%Y")%>
+      <strong>Ending:</strong> <%=booking.end.strftime("%d-%b-%Y")%></br></br>
     </div>
     <%end %>
 </div>
@@ -31,9 +31,9 @@
 
       <strong> Booked Space_id: </strong> <%=guest_booking.space_id%><br/>
 
-      <strong>Starting: </strong> <%=guest_booking.start%><br/>
+      <strong>Starting: </strong> <%=guest_booking.start.strftime("%d-%b-%Y")%><br/>
 
-      <strong> Ending: </strong> <%=guest_booking.end%><br/>
+      <strong> Ending: </strong> <%=guest_booking.end.strftime("%d-%b-%Y")%><br/>
 
       <strong> Seats: </strong> <%=guest_booking.seat%><br/><br/>
 

@@ -16,8 +16,8 @@
     <% @availabilities.each do |availability| %>
       <tr>
         <td><%= availability.space_id %></td>
-        <td><%= availability.start %></td>
-        <td><%= availability.end %></td>
+        <td><%= availability.start.strftime("%d-%b-%Y") %></td>
+        <td><%= availability.end.strftime("%d-%b-%Y") %></td>
         <td><%= availability.seat %></td>
         <td><%= availability.seat_price %></td>
         <td><%= link_to 'Book', new_booking_path(avail_id: availability.id, space_id: availability.space_id)%></td>
