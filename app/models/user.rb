@@ -3,7 +3,8 @@ class User < ApplicationRecord
   # has_many :likes
   # has_many :spaces, through :likes
   has_many :spaces, dependent: :destroy
-  has_many :shouts
+  has_many :shouts, dependent: :destroy
+  has_many :bookings, dependent: :destroy
 
   has_secure_password
 

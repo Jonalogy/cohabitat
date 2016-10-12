@@ -13,7 +13,9 @@ class SpacesController < ApplicationController
   def show
     @shout = Shout.new
     puts ">>>params: #{params[:id].inspect}"
+
     @space_id = params[:id]
+
     @availabilities = Availability.where({space_id: @space_id, active: true})
 
   end
