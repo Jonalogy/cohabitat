@@ -15,8 +15,8 @@ class BookingsController < ApplicationController
   def new
     @avail_id = params[:avail_id] #Used to tag hidden_field with availability_id
 
-    availability = Availability.find(@avail_id)
-    @seat_price = availability.seat_price
+    @availability = Availability.find(@avail_id)
+    @seat_price = @availability.seat_price
     @space_id = params[:space_id]
     @booking = Booking.new
   end
