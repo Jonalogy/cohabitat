@@ -17,13 +17,14 @@
 
   <div class="field">
     <%= f.label :start_date %>
-    <%= f.date_select(:start, use_short_month: true)%>
+    <%= f.date_select(:end, use_short_month: true, order:[:day, :month, :year]) %>
+
 
   </div>
 
   <div class="field">
     <%= f.label :end_date %>
-    <%= f.date_select(:end, use_short_month: true)%>
+    <%= f.date_select(:end, use_short_month: true, order:[:day, :month, :year])%>
 
   </div>
 
