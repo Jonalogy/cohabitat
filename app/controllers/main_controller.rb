@@ -43,17 +43,47 @@ class MainController < ApplicationController
     # @spaces.each do |space|
     #   space[:vibe_name] = space.vibe.name
     #   space[:space_type_name] = space.space_type.name
-    #
-    #   # puts "LOOK HERE THIS TIME FOR space ONLU >>> #{space.inspect} "
-    #   # puts "HERE HELLO space.is_a? Object >>>>> #{space.is_a? Object}"
-    #   # puts "LOOK HERE THIS TIME FOR space.vibe.name >>> #{space.vibe.name} "
-    #   # space.merge({:vibe => space.vibe.name, :space_type => space.space_type.name})
-    #   # space.merge!(vibe: space.vibe.name)
-    #   # space.merge!(space_type: space.space_type.name)
-    #   # space.inject({:vibe => space.vibe.name, :space_type => space.space_type.name})
+    # #
+    # #   # puts "LOOK HERE THIS TIME FOR space ONLY >>> #{space.inspect} "
+    # #   # puts "HERE HELLO space.is_a? Object >>>>> #{space.is_a? Object}"
+    # #   # puts "LOOK HERE THIS TIME FOR space.vibe.name >>> #{space.vibe.name} "
+    # #   # space.merge({:vibe => space.vibe.name, :space_type => space.space_type.name})
+    # #   # space.merge!(vibe: space.vibe.name)
+    # #   # space.merge!(space_type: space.space_type.name)
+    # #   # space.inject({:vibe => space.vibe.name, :space_type => space.space_type.name})
     # end
 
-    render :json => @spaces
+
+    # respond_to do |format|
+    #   format.json {
+    #   render json: @customers, :include => {:store => {:include => {:biz_user => {:only => :company_name}}, :only => :store_name}}}
+    # end
+
+
+#     respond_to do |format|
+#   format.json  {
+#
+#     render :json => @moulding.to_json(:include => [:material_costs])}
+# end
+#
+
+# respond_to do |format|
+#   format.json {
+#     @spaces, :include => {:vibe  => {:only => :name }}
+#     @spaces, :include => {:space_type  => {:only => :name }}
+#     render :json => @spaces
+# }
+# end
+
+# render :json => {:show_ring => @showring.as_json(
+#   :include =>[:variations, :stones]
+#   ), :other_rings => @other_rings}
+
+render :json => @spaces, :include => [:vibe,:space_type, :images => {:only => :url }]
+
+
+    #works to some extent
+    # render :json => @spaces, :include => {:vibe  => {:only => :name }}, :include => {:space_type  => {:only => :name }}
   end
 
   def schedule

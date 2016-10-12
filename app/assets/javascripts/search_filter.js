@@ -33,21 +33,14 @@ $(document).on('turbolinks:load', function() {
           console.log("AJAX RETURNED DATA>>>>> "+data)
           $('.AJAXthis').empty()
 
-            // for (var i = 0 ; i < data.length) {
-            //   $('.AJAXthis').append()
-            //   <div class="col-xs-12 col-sm-6 col-md-4"><img class="search-space-image" src="<%= space.images[0].url %>" alt="" /></div>
-            //
-            //     <div class="col-xs-12 col-sm-6 col-md-4">
-            //       <img class="search-space-image" src="<%= space.images[0].url %>" alt="" />
-            //       <p><%= space.space_name %></p>
-            //       <p><%= space.space_type.name %>,<%= space.vibe.name %></p>
-            //     </div>
-            //
-            // }
-
-
-
-          $('.AJAXthis').append(JSON.stringify(data))
+          if (data.length > 0){
+            for (var i = 0 ; i < data.length ; i++) {
+              $('.AJAXthis').append("<div class='col-xs-12 col-sm-6 col-md-4'><img class='search-space-image' src='"+ data[i]["images"][0]["url"] +"' alt='space image' /><p><a href='/spaces/" + data[0].id + "'>" + data[0].space_name + "</a></p><p>" + data[0].space_type.name + ", " + data[0].vibe.name + "</p></div>")
+            }
+          }
+          else {
+            $('.AJAXthis').append("<div class=''><p>No listings found. Try other combinations.</p></div>")
+          }
 
 
 

@@ -23,7 +23,7 @@
 
     <div class="col-xs-12 col-sm-6 col-md-4">
       <img class="search-space-image" src="<%= space.images[0].url %>" alt="" />
-      <p><%= space.space_name %></p>
+      <p><a href="spaces/<%= space.id %>"><%= space.space_name %></a</p>
       <p><%= space.space_type.name %>,<%= space.vibe.name %></p>
     </div>
   <% end %>
