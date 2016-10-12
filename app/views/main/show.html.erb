@@ -40,8 +40,8 @@
     </p>
     <%= form_tag(search_path, :method => "get", id: "search-form") do %>
     <!-- <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %> -->
-    <%= select_tag :space_country_id, options_for_select(Country.all.order('id ASC').collect {|x| [x.name, x.id]}.insert(0, "Select a country"))%>
-    <select name="space_area_id" id="space_area_id"><option value="">Select an area</option></select>
+    <%= select_tag :space_country_id, options_for_select(Country.all.order('id ASC').collect {|x| [x.name, x.id]}.insert(0, "Select a country")), class: "styled-dropdown"%>
+    <select name="space_area_id" id="space_area_id" class="styled-dropdown"><option value="">Select an area</option></select>
     <%= submit_tag "Search", class: "btn btn-secondary" %>
     <% end %>
   </div>
