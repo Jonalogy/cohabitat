@@ -14,16 +14,16 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Host</a>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Manage Space</a>
+                <a class="dropdown-item" href="/spaces">Manage Space</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/schedule">Add Space</a>
+                <a class="dropdown-item" href="#">Add Space</a>
               </div>
             </li>
 
             <% if @current_user %>
 
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%= @current_user.email %></a>
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%= @current_user.first_name %></a>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="#">Edit Profile</a>
                 <div class="dropdown-divider"></div>

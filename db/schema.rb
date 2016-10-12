@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 20161010060800) do
   end
 
   create_table "bookings", force: :cascade do |t|
-    t.integer  "user_id"
     t.integer  "space_id"
     t.integer  "availability_id"
     t.date     "start"
