@@ -9,15 +9,17 @@ class BookingsController < ApplicationController
 
   # GET /bookings/1
   def show
+
   end
 
   # GET /bookings/new
   def new
     @avail_id = params[:avail_id] #Used to tag hidden_field with availability_id
 
-    availability = Availability.find(@avail_id)
-    @seat_price = availability.seat_price
+    @availability = Availability.find(@avail_id)
+    @seat_price = @availability.seat_price
     @space_id = params[:space_id]
+    @space_name = Space.find(@space_id).space_name
     @booking = Booking.new
   end
 

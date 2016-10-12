@@ -1,3 +1,4 @@
+<h5>Session user_id:  <%=@current_user.id.inspect%></h5>
 <p id="notice"><%= notice %></p>
 <h3>Space_<%="#{@space_id}"%></h3>
 
@@ -62,13 +63,18 @@
       <tbody>
         <% @availabilities.each do |availability| %>
           <tr>
-            <td><%= availability.start %></td>
-            <td><%= availability.end %></td>
+            <td><%= availability.start.strftime("%d-%b-%Y") %></td>
+            <td><%= availability.end.strftime("%d-%b-%Y") %></td>
             <td><%= availability.seat %></td>
             <td><%= availability.seat_price %></td>
-            <td><%= link_to 'Edit', edit_availability_path(availability) %></td>
+              <%if @current_user.id != @space_owner%>
+                <td><%= link_to 'Book', new_booking_path(avail_id: availability.id, space_id: availability.space_id)%></td>
+              <%end%>
             <td><%= link_to 'Show', availability %></td>
-            <td><%= link_to 'Destroy', availability, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <%if @current_user.id == @space_owner%>
+              <td><%= link_to 'Edit', edit_availability_path(availability) %></td>
+              <td><%= link_to 'Destroy', availability, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <%end%>
           </tr>
         <% end %>
       </tbody>
