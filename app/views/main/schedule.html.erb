@@ -1,17 +1,49 @@
+<h5>Session user_id:  <%=@current_user.id.inspect%></h5>
 
 <h1>Schedule</h1>
 
 <div class="container-fluid">
 <div class="row">
-    <h3>Upcoming</h3>
-    <h3>Session= <%="#{@current_user.id.inspect}"%></h3>
+    <h3>My Bookings</h3>
 
+    <% @my_bookings.each do |booking| %>
+    <div class="col-md-10 bubble">
+      <strong>Space Name:</strong> <%=@spaces_hash[booking.space_id]%>
+      <strong>Seats:</strong> <%=booking.seat%></br>
+      <strong>Starting:</strong> <%=booking.start%>
+      <strong>Ending:</strong> <%=booking.end%></br>
+    </div>
+    <%end %>
+</div>
+</div>
+
+<div class="container-fluid">
+<div class="row">
+  <br/>
+  <h3>Guest Bookings</h3>
+  <% @guest_bookings.each do |guest_booking| %>
+    <div class="col-md-12">
+      <strong>Booking_id: </strong> <%=guest_booking.id%><br/>
+
+      <strong>By user_id: </strong> <%=guest_booking.user_id%><br/>
+
+      <strong> Booked Space_id: </strong> <%=guest_booking.space_id%><br/>
+
+      <strong>Starting: </strong> <%=guest_booking.start%><br/>
+
+      <strong> Ending: </strong> <%=guest_booking.end%><br/>
+
+      <strong> Seats: </strong> <%=guest_booking.seat%><br/><br/><br/>
+
+    </div>
+  <%end%>
 </div>
 </div>
 
 
-
-
+<%#<strong>Guest_id: </strong>%> <%#guest%>
+<%# booking 1... %>
+<%# booking 2...%>
 
 
 <%=link_to 'Login', login_path%>

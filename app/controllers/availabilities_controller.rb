@@ -5,6 +5,8 @@ class AvailabilitiesController < ApplicationController
   # GET /availabilities
   def index
     @availabilities = Availability.where(:active => true)
+
+    #>>>>>>create private Space_name method
   end
 
   # GET /availabilities/1
@@ -60,4 +62,5 @@ class AvailabilitiesController < ApplicationController
     def availability_params
       params.require(:availability).permit(:space_id, :start, :end, :seat, :seat_price, :active)
     end
+
 end
