@@ -28,6 +28,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'cloudinary'
 gem 'bootstrap', '~> 4.0.0.alpha4'
+gem 'stripe'
+gem 'figaro'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'

@@ -61,7 +61,7 @@
           <th colspan="3"></th>
         </tr>
       <tbody>
-        <% @availabilities.each do |availability| %>
+        <% @availabilities.order(start: :asc).each do |availability| %>
           <tr>
             <td><%= availability.start.strftime("%d-%b-%Y") %></td>
             <td><%= availability.end.strftime("%d-%b-%Y") %></td>
