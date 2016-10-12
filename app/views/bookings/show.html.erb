@@ -12,12 +12,12 @@
 
 <p>
   <strong>Start:</strong>
-  <%= @booking.start %>
+  <%= @booking.start.strftime("%d-%b-%Y") %>
 </p>
 
 <p>
   <strong>End:</strong>
-  <%= @booking.end %>
+  <%= @booking.end.strftime("%d-%b-%Y") %>
 </p>
 
 <p>

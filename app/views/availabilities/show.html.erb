@@ -9,12 +9,12 @@
 
 <p>
   <strong>Start:</strong>
-  <%= @availability.start %>
+  <%= @availability.start.strftime("%d-%b-%Y") %>
 </p>
 
 <p>
   <strong>End:</strong>
-  <%= @availability.end %>
+  <%= @availability.end.strftime("%d-%b-%Y") %>
 </p>
 
 <p>

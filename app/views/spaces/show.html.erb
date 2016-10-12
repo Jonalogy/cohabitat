@@ -63,8 +63,8 @@
       <tbody>
         <% @availabilities.each do |availability| %>
           <tr>
-            <td><%= availability.start %></td>
-            <td><%= availability.end %></td>
+            <td><%= availability.start.strftime("%d-%b-%Y") %></td>
+            <td><%= availability.end.strftime("%d-%b-%Y") %></td>
             <td><%= availability.seat %></td>
             <td><%= availability.seat_price %></td>
               <%if @current_user.id != @space_owner%>
