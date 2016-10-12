@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   delete "logout" => "sessions#destroy"
 
   get "areaofcountry" => "areas#area_of_country"
+  get "searchfilter" => "main#search_filter"
 
   resources :spaces
   resources :amenities

@@ -1,14 +1,34 @@
 <h1>Search results</h1>
-<% if @spaces.count > 0 %>
+<div class="center-content">
+  <% if @spaces.count > 0 %>
+  Filter by:
+  <%= select_tag :space_type_id, options_for_select(SpaceType.all.order('id ASC').collect {|x| [x.name, x.id]}.insert(0, "Space Type")),class: 'filter_options' %>
+  <%= select_tag :vibe_id, options_for_select(Vibe.all.order('id ASC').collect {|x| [x.name, x.id]}.insert(0, "Vibe")), class: 'filter_options'%>
   <p>
-    Spaces found in <%= @spaces[0].area.name %>, <%= @spaces[0].country.name %>.
+    Amenities:
+    <% Amenity.all.order('id ASC').collect.each do |amenity| %>
+    <label class="checkboxSpacer">
+      <%= check_box_tag "amenity_id[#{amenity.id}]", amenity.id, false, class: 'amenities_checkbox filter_options' %>
+      <%= amenity.name %>
+    </label>
+  <% end %>
+</div>
+
+</p>
+  <p>
+    Spaces found in <input type="hidden" id='area_id' value='<%= @spaces[0].area_id %>'><%= @spaces[0].area.name %>, <input type="hidden" id='country_id' value='<%= @spaces[0].country_id %>'><%= @spaces[0].country.name %>.
   </p>
+<div class="AJAXthis">
   <% @spaces.each do |space| %>
+
     <div class="col-xs-12 col-sm-6 col-md-4">
       <img class="search-space-image" src="<%= space.images[0].url %>" alt="" />
       <p><%= space.space_name %></p>
+      <p><%= space.space_type.name %>,<%= space.vibe.name %></p>
     </div>
   <% end %>
+</div>
+
 <% else %>
   <div class="">
     <p>
