@@ -30,6 +30,16 @@ class MainController < ApplicationController
       end
     end
 
+    if params["start_date"] && params["end_date"]
+      # @availabilities = Availability.where("availabilities.start <= ? AND availabilities.end >= ?", params["start_date"], params["end_date"])
+      # puts ">>>>>>>>>>>>>>> #{@availabilities.inspect}"
+      @spaces = @spaces.joins(:availabilities).where("availabilities.start <= ? AND availabilities.end >= ?", params["start_date"], params["end_date"])
+      puts "THIS ONE >>>>>>>>>>>>>>> #{@spaces.inspect}"
+
+      # @spaces = @spaces.includes(:availabilities).where("availabilities.start <= ?", params["start_date"]).where("availabilities.end >= ?", params["end_date"])
+      # @spaces = @spaces.includes(:availabilities).where("availability.start <= ?", params["start_date"]).where("availability.end >= ?", params["end_date"])
+    end
+
     render :json => @spaces, :include => [:vibe,:space_type, :images => {:only => :url }]
   end
 
