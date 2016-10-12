@@ -105,16 +105,35 @@ class BookingsController < ApplicationController
           end
           redirect_to availabilities_path, notice: 'Booking was successfully created.'
         end
-      end # end of if @booking.save
-    elsif @book_start < @avail_start
-      redirect_to availabilities_path, notice: 'Booking date cannot be earlier than listing\'s start date, please try again'
-    elsif @book_end > @avail_end
-      redirect_to availabilities_path, notice: 'Booking date must not end later than listing\'s end date, please try again'
-    elsif @book_seat > @avail_seat
-      redirect_to availabilities_path, notice: "Listing consists only #{@avail_seat} seats. Please contact host for further assistance"
-    else
-      redirect_to availabilities_path, notice: 'Oops, booking parameters may be faulty, please try again'
-    end
+
+
+        # make charge when booking made
+        Stripe.api_key = ENV["stripe_secret_key"]
+          # Get the credit card details submitted by the form
+          token = params[:stripeToken]
+          @price = (params[:booking][:total_price].to_i) *100
+        # Create a charge: this will charge the user's card
+        begin
+          charge = Stripe::Charge.create(
+            :amount => @price,
+            :currency => "sgd",
+            :source => token,
+            :description => "Co-Habitat Booking id: #{@booking.id}"
+          )
+        rescue Stripe::CardError => e
+          # The card has been declined
+        end
+
+          end # end of if @booking.save
+        elsif @book_start < @avail_start
+          redirect_to availabilities_path, notice: 'Booking date cannot be earlier than listing\'s start date, please try again'
+        elsif @book_end > @avail_end
+          redirect_to availabilities_path, notice: 'Booking date must not end later than listing\'s end date, please try again'
+        elsif @book_seat > @avail_seat
+          redirect_to availabilities_path, notice: "Listing consists only #{@avail_seat} seats. Please contact host for further assistance"
+        else
+          redirect_to availabilities_path, notice: 'Oops, booking parameters may be faulty, please try again'
+        end
 
   end #create
 
@@ -141,7 +160,7 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:space_id, :availability_id, :start, :end, :seat, :total_price)
+      params.require(:booking).permit(:space_id, :availability_id, :start, :end, :seat, :total_price, :stripeToken)
     end
 
 end

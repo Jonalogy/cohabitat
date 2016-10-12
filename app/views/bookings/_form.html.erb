@@ -42,9 +42,28 @@
   Total Price: <strong> <span id="show_price">$<%=(@availability.seat)*(@availability.seat_price)%></span></strong>
   </div>
 
-  <div class="actions">
+
+    <article>
+      <% if flash[:error].present? %>
+        <div id="error_explanation">
+          <p><%= flash[:error] %></p>
+        </div>
+      <% end %>
+    </article>
+
+    <script
+      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key="pk_test_VBn7DgAofnRGH01TsQnhTZ9B"
+      data-name="Co-Habitat"
+      data-description="Make Booking Payment"
+      data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+      data-locale="auto"
+      data-zip-code="true">
+    </script>
+
+  <!-- <div class="actions">
     <%= f.submit %>
-  </div>
+  </div> -->
 
   <div class="field">
     <%=hidden_field(:booking, :price, options={ :value => @seat_price, :id => 'seat_price' } )%>
