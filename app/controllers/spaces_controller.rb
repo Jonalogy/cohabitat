@@ -40,7 +40,7 @@ class SpacesController < ApplicationController
       cloudinary_file_1 = Cloudinary::Uploader.upload(uploaded_file_1)
       image_urls << cloudinary_file_1["url"]
     else
-      image_urls << ""
+      image_urls << "http://res.cloudinary.com/dgiqrtq7k/image/upload/v1476276808/default-placeholder_qvavvq.png"
     end
 
     if params[:space][:workspace_image_url_2]
@@ -48,7 +48,7 @@ class SpacesController < ApplicationController
       cloudinary_file_2 = Cloudinary::Uploader.upload(uploaded_file_2)
       image_urls <<  cloudinary_file_2["url"]
     else
-      image_urls << ""
+      image_urls << "http://res.cloudinary.com/dgiqrtq7k/image/upload/v1476276808/default-placeholder_qvavvq.png"
     end
 
     if params[:space][:workspace_image_url_3]
@@ -56,7 +56,7 @@ class SpacesController < ApplicationController
       cloudinary_file_3 = Cloudinary::Uploader.upload(uploaded_file_3)
       image_urls << cloudinary_file_3["url"]
     else
-      image_urls << ""
+      image_urls << "http://res.cloudinary.com/dgiqrtq7k/image/upload/v1476276808/default-placeholder_qvavvq.png"
     end
 
     params[:space].delete(:workspace_image_url_1)
