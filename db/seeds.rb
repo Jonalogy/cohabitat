@@ -192,7 +192,7 @@ Country.create(name: 'Singapore')
 Country.create(name: 'USA')
 
 Vibe.create(name: 'Quiet')
-Vibe.create(name: 'Vibrant'
+Vibe.create(name: 'Vibrant')
 
 Amenity.create(name: 'Coffee')
 Amenity.create(name: 'Conference Room')
