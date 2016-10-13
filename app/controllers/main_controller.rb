@@ -57,21 +57,6 @@ class MainController < ApplicationController
     end #@space_ids.each
 
     ####Guest Bookings####
-      # @guest_bookings = Booking.joins(:user).where('start > ?', Date.today).where.not('user_id = ?', session[:user_id] ).select(:user_id, :id, :space_id, :start, :end, :seat)
-      #
-      # names = User.joins(:bookings).where('start > ?', Date.today).where.not('user_id = ?', session[:user_id]).select(:id, :first_name).to_a
-      #
-      # @guest_names = Hash.new(0)
-      # names.each do |name|
-      #   @guest_names[name.id] = name.first_name
-      # end
-      #
-      # space = Space.joins(:bookings).where('start > ?', Date.today).select(:id, :user_id, :space_name).to_a
-      # @space_names = Hash.new(0)
-      # space.each do |space|
-      #   @space_names[space.user_id] = space.space_name
-      # end
-      # puts ">>>@space_names: #{@space_names}"
 
       my_spaces = Space.where(user_id: @current_user.id).to_a
       @my_space_ids = []
