@@ -87,8 +87,8 @@
     <%if @user_id == @space_owner%>
       <%= link_to 'New', new_availability_path(space_id: @space.id), :role => 'button', :class => "btn btn-outline-primary btn-sm"  %>
     <%end%>
-
-    <table>
+    <%if @availabilities.length != 0 %>
+      <table>
         <tr>
           <th>Start</th>
           <th>End</th>
@@ -116,6 +116,11 @@
         <% end %>
       </tbody>
     </table>
+    <%else%>
+      <table>
+        <tr><td>No Available listings yet, please try again next time.</td></tr>
+      </table>
+    <%end%> <%#end -> if @availabilities%>
   </div>
 </div>
 
