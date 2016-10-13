@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
-  # before_action :is_authenticated
+  before_action :is_admin?, only: [:index, :edit, :show, :update]
 
   # GET /bookings
   def index
@@ -163,7 +163,7 @@ class BookingsController < ApplicationController
   # DELETE /bookings/1
   def destroy
     @booking.destroy
-    redirect_to bookings_url, notice: 'Booking was successfully destroyed.'
+    redirect_to schedule_path, notice: 'Booking was successfully destroyed.'
   end
 
   private
@@ -175,6 +175,14 @@ class BookingsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
       params.require(:booking).permit(:space_id, :availability_id, :start, :end, :seat, :total_price, :stripeToken)
+    end
+
+    def is_admin?
+      if session[:user_id] != 1
+        flash[:danger] = "Admin priviledges denied"
+        redirect_to root_path
+        return
+      end
     end
 
 end

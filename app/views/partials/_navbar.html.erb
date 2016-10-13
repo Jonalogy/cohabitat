@@ -10,15 +10,16 @@
           <a class="navbar-brand" href="/">Cohabitat</a>
           <!-- Links -->
           <ul class="nav navbar-nav pull-xs-right">
-
+            <%if @current_user != nil%>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Host</a>
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Habitat</a>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="/spaces">Manage Space</a>
+                <a class="dropdown-item" href="/spaces">Manage Habitats</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/spaces/new">Add Space</a>
+                <a class="dropdown-item" href="/spaces/new">Add Habitat</a>
               </div>
             </li>
+            <%end%>
 
             <% if @current_user %>
 

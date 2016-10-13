@@ -1,30 +1,29 @@
 class AvailabilitiesController < ApplicationController
   before_action :set_availability, only: [:show, :edit, :update, :destroy]
+  before_action :is_admin?, only: [:index]
+  before_action :ownership, only: [:new, :edit, :destroy]
   # before_action :is_authenticated
 
   # GET /availabilities
   def index
     @availabilities = Availability.where(:active => true)
-
-    #>>>>>>create private Space_name method
   end
 
   # GET /availabilities/1
   def show
     @space = Space.find(@availability.space_id)
-
   end
 
   # GET /availabilities/new
   def new
-    @space_id = params[:space_id]
+    # @space_id = params[:space_id]
+    # @owner_id = Space.where(id:@space_id).user_id
     @availability = Availability.new
   end
 
   # GET /availabilities/1/edit
   def edit
     @space_id = @availability[:space_id]
-    puts ">>>edit space_id: #{@space_id}"
 
 
   end
@@ -66,11 +65,22 @@ class AvailabilitiesController < ApplicationController
     end
 
     def ownership
+      @space_id = params[:space_id] ||=@availability[:space_id]
+      # puts ">>>space_id: #{@space_id} and  #{@space_id.class}"
+
       @owner_id = Space.where(id:@space_id).as_json[0]['user_id']
       @user_id = @current_user.id
 
-      if @user_id != @owner_id
+      if (@user_id != @owner_id && @user_id != 1) #user_1 is admin
         redirect_to root_path, notice: 'Access denied!'
       end
+    end #end ownership()
+
+    def is_admin?
+      if @current_user.id != 1
+        flash[:danger] = "Admin priviledges denied"
+        redirect_to root_path
+      end
     end
+
 end

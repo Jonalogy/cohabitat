@@ -36,7 +36,7 @@
 
 .background-image-search-results {
   background-color: black;
-  background-image: url("http://res.cloudinary.com/dgiqrtq7k/image/upload/v1476344465/workspace-3-med-37blackopacity_jwygr7.jpg");
+  background-image: url("http://res.cloudinary.com/dgiqrtq7k/image/upload/v1476360108/workspace-1-med-50blackopacity_mwcbxs.jpg");
   background-size: cover;
   background-attachment: fixed;
   position:absolute;
@@ -58,7 +58,7 @@
   background-color: rgba(0,0,0,0)
 }
 
-div > .latest-6-spaces {
+.latest-6-spaces {
   background-color: white !important;
   padding-top: 2em;
   // margin-left: 3em;
@@ -113,4 +113,8 @@ div > .search-results-output {
 
 .add-padding{
   padding:1em
+}
+
+#avail_head {
+  display: inline-block;
 }

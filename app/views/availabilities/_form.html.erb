@@ -28,7 +28,7 @@
 
   <div class="field">
     <%= f.label :seat %>
-    <%= f.number_field :seat, :value =>0, :min => 0 %>
+    <%= f.number_field :seat, :value =>@availability.seat, :min => 1 %>
   </div>
 
   <div class="field">
