@@ -25,13 +25,15 @@ class AvailabilitiesController < ApplicationController
   def edit
     @space_id = @availability[:space_id]
     puts ">>>edit space_id: #{@space_id}"
+
+
   end
 
   # POST /availabilities
   def create
     @availability = Availability.new(availability_params)
       if @availability.save
-        redirect_to @availability, notice: 'Availability was successfully created.'
+        redirect_to space_path(@availability.space_id), notice: 'Availability was successfully created.'
       else
         render :new
       end
@@ -63,4 +65,12 @@ class AvailabilitiesController < ApplicationController
       params.require(:availability).permit(:space_id, :start, :end, :seat, :seat_price, :active)
     end
 
+    def ownership
+      @owner_id = Space.where(id:@space_id).as_json[0]['user_id']
+      @user_id = @current_user.id
+
+      if @user_id != @owner_id
+        redirect_to root_path, notice: 'Access denied!'
+      end
+    end
 end
