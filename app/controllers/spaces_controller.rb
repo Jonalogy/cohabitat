@@ -1,6 +1,6 @@
 class SpacesController < ApplicationController
   before_action :set_space, only: [:show, :edit, :update, :destroy]
-  # before_action :is_authenticated
+  before_action :ownership, only: [:edit, :destroy]
 
   # GET /spaces
   def index
@@ -12,11 +12,11 @@ class SpacesController < ApplicationController
   # GET /spaces/1
   def show
     @shout = Shout.new
-      puts ">>>url_params: #{params[:id].inspect}"
+      # puts ">>>url_params: #{params[:id].inspect}"
 
     @space_id = params[:id]
     @space_owner = Space.find(@space_id).user_id
-      puts ">>>@space_owner: #{@space_owner}"
+      # puts ">>>@space_owner: #{@space_owner}"
 
     @availabilities = Availability.where({space_id: @space_id, active: true})
 
@@ -29,7 +29,10 @@ class SpacesController < ApplicationController
 
   # GET /spaces/1/edit
   def edit
-  end
+    # @space_id = params[:id] #takes space_id from url_params
+    # ownership
+
+  end#edit method
 
   # POST /spaces
   def create
@@ -129,6 +132,8 @@ class SpacesController < ApplicationController
 
   # DELETE /spaces/1
   def destroy
+    ownership
+
     @space.destroy
     redirect_to spaces_url, notice: 'Space was successfully destroyed.'
   end
@@ -143,4 +148,16 @@ class SpacesController < ApplicationController
     def space_params
       params.require(:space).permit(:user_id, :country_id, :area_id, :address, :postal, :space_name, :space_description, :space_type_id, :vibe_id, :amenity_ids => [])
     end
+
+    def ownership
+      @space_id = params[:id] #takes space_id from url_params
+
+      @owner_id = Space.where(id:@space_id).as_json[0]['user_id']
+      @user_id = @current_user.id
+
+      if @user_id != @owner_id
+        redirect_to spaces_path
+      end
+    end
+
 end

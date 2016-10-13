@@ -56,20 +56,45 @@ class MainController < ApplicationController
       # @space_names.push(['space_name'])
     end #@space_ids.each
 
+
+
     # puts ">>>Check @my_bookings: #{@my_bookings.inspect}"
     # puts ">>>Check @spaces: #{@spaces}"
     # puts ">>>Checking hash_@spaces: #{@spaces_hash}"
 
-    @guest_bookings = Booking.where.not(user_id: @current_user.id).to_a
+    #Query all spaces belonging to user and converts result to array format
+    my_spaces = Space.where(user_id: @current_user.id).to_a
 
+    #Array will hold all belonging space_ids
+    @my_space_ids = []
+
+    #iterates thru my_spaces array and pushes only space_id into @my_space_ids[]
+    my_spaces.each do |my_space|
+      @my_space_ids.push(my_space.id)
+    end
+    puts ">>>Check @my_space_ids: #{@my_space_ids}"
+
+    @guest_bookings = []
+    #For each space_id, query for booking
+    @my_space_ids.each do |my_space_id|
+       user_x = Booking.where.not(user_id: @user_id).where(space_id: my_space_id).to_a
+
+       user_x.each do |x|
+         @guest_bookings.push(x)
+      end
+    end
+
+    puts ">>>Checking #{@guest_bookings.inspect}"
+
+    # @guest_bookings = Booking.where.not(user_id: @user_id).to_a
+    #
     # @guests = Hash.new(0)
     # @guest_bookings.each do |guest_booking|
     #   @guests.[guest_booking.id] = guest_booking.user_id
     #   guest_booking.user_id
     # end #@guest_bookings.each
-
-    puts ">>>Checking @guests: #{@guests}"
-
+    #
+    # puts ">>>Checking @guests: #{@guests}"
 
     # puts ">>>Check @guest_bookings: #{@guest_bookings.inspect}"
 

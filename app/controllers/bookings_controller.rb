@@ -36,7 +36,8 @@ class BookingsController < ApplicationController
     avail_id = params[:booking][:availability_id]
     @availability = Availability.find(avail_id)
     if @availability.active == false
-      redirect_to availabilities_path, notice: 'Availability has expired, please select another.'
+      flash[:danger] = "Availability has expired, please select another."
+      redirect_to space_path(@availability.space_id)
       return
     end
     @avail_start = @availability.start #date format
@@ -57,7 +58,8 @@ class BookingsController < ApplicationController
       if @booking.save!
         Availability.update(avail_id,:active=>false) # @availability.active = false
         if @book_start == @avail_start && @book_end == @avail_end && @book_seat == @avail_seat
-          redirect_to availabilities_path, notice: 'Booking was successfully created.'
+          flash[:success] =  'Booking was successfully created.'
+          redirect_to schedule_path
         elsif @book_start == @avail_start && @book_end == @avail_end && @book_seat < @avail_seat
           #if booking's start, end matches availability listing's:
           seats_left =  @avail_seat - @book_seat
@@ -65,7 +67,8 @@ class BookingsController < ApplicationController
           @new_avail.seat = seats_left
           @new_avail.active = true
           Availability.create!(@new_avail.attributes)
-          redirect_to availabilities_path, notice: 'Booking was successfully created.'
+          flash[:success] =  'Booking was successfully created.'
+          redirect_to schedule_path
         elsif (@book_start > @avail_start || @book_end < @avail_end) && @book_seat == @avail_seat
           if @book_start > @avail_start #When booking happens later than availability
             @new_avail_1 = @availability.dup #duplicates instance
@@ -81,7 +84,7 @@ class BookingsController < ApplicationController
             @new_avail_2.active = true
             Availability.create!(@new_avail_2.attributes)
           end
-          redirect_to availabilities_path, notice: 'Booking was successfully created.'
+          flash[:success] =  'Booking was successfully created.'
         elsif (@book_start > @avail_start || @book_end < @avail_end) && @book_seat < @avail_seat
           seats_left =  @avail_seat - @book_seat
           @new_avail = @availability.dup #duplicates instance
@@ -103,7 +106,7 @@ class BookingsController < ApplicationController
             @new_avail_2.active = true
             Availability.create!(@new_avail_2.attributes)
           end
-          redirect_to availabilities_path, notice: 'Booking was successfully created.'
+          flash[:success] =  'Booking was successfully created.'
         end
 
 
@@ -126,13 +129,24 @@ class BookingsController < ApplicationController
 
           end # end of if @booking.save
         elsif @book_start < @avail_start
-          redirect_to availabilities_path, notice: 'Booking date cannot be earlier than listing\'s start date, please try again'
+
+          flash[:danger] = 'Booking date cannot be earlier than listing\'s start date, please try again'
+          redirect_to space_path(@availability.space_id)
+
         elsif @book_end > @avail_end
-          redirect_to availabilities_path, notice: 'Booking date must not end later than listing\'s end date, please try again'
+
+          flash[:danger] =  'Booking date must not end later than listing\'s end date, please try again'
+
+          redirect_to space_path(@availability.space_id)
+
+
         elsif @book_seat > @avail_seat
-          redirect_to availabilities_path, notice: "Listing consists only #{@avail_seat} seats. Please contact host for further assistance"
+          flash[:danger] =  "Listing consists only #{@avail_seat} seats. Please contact host for further assistance"
+          redirect_to space_path(@availability.space_id)
+
         else
-          redirect_to availabilities_path, notice: 'Oops, booking parameters may be faulty, please try again'
+          flash[:danger] =  'Oops, booking parameters may be faulty, please try again'
+          redirect_to space_path(@availability.space_id)
         end
 
   end #create
