@@ -21,8 +21,12 @@
     font-weight: bold;
  }
 
- .navbar-brand a:hover {
-    background-color:rgba(0,0,0,0);
+.navbar-toggler{
+  color: white;
+}
+
+ .navbar-brand:hover {
+    background-color:rgba(0,0,0,0) !important;
     font-weight: bold;
  }
 

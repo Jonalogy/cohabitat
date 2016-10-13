@@ -12,3 +12,14 @@
 h1 {
   text-align: center;
 }
+
+.background-image-users-form{
+  background-color: black;
+  background-image: url("http://res.cloudinary.com/dgiqrtq7k/image/upload/v1476344465/workspace-2-med-37blackopacity_jkrxc7.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  position:absolute;
+  top: 0;
+  z-index: -10;
+  width: 100%;
+}
