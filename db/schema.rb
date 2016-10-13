@@ -69,13 +69,6 @@ ActiveRecord::Schema.define(version: 20161010060800) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "likes", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "space_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "shouts", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "space_id"

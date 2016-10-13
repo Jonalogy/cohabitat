@@ -9,10 +9,10 @@
           <div class="col-xs-12 bubble">
           </br>
           <strong>Space Name:</strong> <%=@spaces_hash[booking.space_id]%>
-          <span>, <span>
+          <span>, </span>
           <strong>Pax:</strong> <%=booking.seat%></br>
           <strong>Starting:</strong> <%=booking.start.strftime("%d-%b-%Y")%>
-          <span>, <span>
+          <span>, </span>
           <strong>Ending:</strong> <%=booking.end.strftime("%d-%b-%Y")%></br>
           <strong>Booking_id:</strong> <%=booking.id%></br>
 
@@ -54,7 +54,7 @@
           <strong>Ending: </strong> <%=guest_booking.end.strftime("%d-%b-%Y")%><br/>
 
           <strong>Booking_id: </strong> <%=guest_booking.id%>
-          <span>, <span>
+          <span>, </span>
           <strong>Seats: </strong> <%=guest_booking.seat%><br/>
 
           <%= link_to 'View Guest', user_path(guest_booking.user_id), :role => 'button', :class => "btn btn-outline-primary btn-sm" %>
