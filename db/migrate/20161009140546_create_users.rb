@@ -6,7 +6,6 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :first_name
       t.string :last_name
       t.string :profile_img_url
-      t.decimal :wallet, precision: 13, scale: 2
       t.text :bio
 
       t.timestamps

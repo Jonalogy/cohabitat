@@ -4,7 +4,8 @@ $(document).on('turbolinks:load', function() {
   console.log("bookings.js loaded");
 
   total()
-  $('#booking_seat').keypress(function(){
+
+  $('#booking_seat').change(function(){
       total()
     })//end of event listener
   $('#booking_start_1i').change(function(){
