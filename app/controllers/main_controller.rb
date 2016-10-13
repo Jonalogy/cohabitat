@@ -56,47 +56,22 @@ class MainController < ApplicationController
       # @space_names.push(['space_name'])
     end #@space_ids.each
 
+    ####Guest Bookings####
+    @guest_bookings = Booking.joins(:user).where('start > ?', Date.today).where.not('user_id = ?', 1 ).select(:user_id, :id, :space_id, :start, :end, :seat)
 
+    names = User.joins(:bookings).where('start > ?', Date.today).where.not('user_id = ?', 1).select(:id, :first_name).to_a
 
-    # puts ">>>Check @my_bookings: #{@my_bookings.inspect}"
-    # puts ">>>Check @spaces: #{@spaces}"
-    # puts ">>>Checking hash_@spaces: #{@spaces_hash}"
-
-    #Query all spaces belonging to user and converts result to array format
-    my_spaces = Space.where(user_id: @current_user.id).to_a
-
-    #Array will hold all belonging space_ids
-    @my_space_ids = []
-
-    #iterates thru my_spaces array and pushes only space_id into @my_space_ids[]
-    my_spaces.each do |my_space|
-      @my_space_ids.push(my_space.id)
-    end
-    puts ">>>Check @my_space_ids: #{@my_space_ids}"
-
-    @guest_bookings = []
-    #For each space_id, query for booking
-    @my_space_ids.each do |my_space_id|
-       user_x = Booking.where.not(user_id: @user_id).where(space_id: my_space_id).to_a
-
-       user_x.each do |x|
-         @guest_bookings.push(x)
-      end
+    @guest_names = Hash.new(0)
+    names.each do |name|
+      @guest_names[name.id] = name.first_name
     end
 
-    puts ">>>Checking #{@guest_bookings.inspect}"
-
-    # @guest_bookings = Booking.where.not(user_id: @user_id).to_a
-    #
-    # @guests = Hash.new(0)
-    # @guest_bookings.each do |guest_booking|
-    #   @guests.[guest_booking.id] = guest_booking.user_id
-    #   guest_booking.user_id
-    # end #@guest_bookings.each
-    #
-    # puts ">>>Checking @guests: #{@guests}"
-
-    # puts ">>>Check @guest_bookings: #{@guest_bookings.inspect}"
+    space = Space.joins(:bookings).where('start > ?', Date.today).select(:id, :user_id, :space_name).to_a
+    @space_names = Hash.new(0)
+    space.each do |space|
+      @space_names[space.user_id] = space.space_name
+    end
+    puts ">>>@space_names: #{@space_names}"
 
   end
 
