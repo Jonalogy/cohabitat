@@ -43,6 +43,16 @@ function total(){
       var days = ((ending - starting)/86400000)+1
 
       var total = $('#booking_seat').val() * seat_price * days;
-      $('#booking_total_price').val(total);
-      $('#show_price').text(total);
+
+      if (total > 0) {
+        $('.stripe-button-el').show()
+        total = '$' + total.toFixed(2)
+        $('#booking_total_price').val(total);
+        $('#show_price').text(total);
+      } else {
+        total = "Impossible! End date cannot be earlier than start date!"
+        $('#show_price').text(total);
+        $('.stripe-button-el').hide()
+      }
+
   }
