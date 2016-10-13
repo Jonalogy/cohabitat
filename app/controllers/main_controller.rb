@@ -57,9 +57,9 @@ class MainController < ApplicationController
     end #@space_ids.each
 
     ####Guest Bookings####
-    @guest_bookings = Booking.joins(:user).where('start > ?', Date.today).where.not('user_id = ?', 1 ).select(:user_id, :id, :space_id, :start, :end, :seat)
+    @guest_bookings = Booking.joins(:user).where('start > ?', Date.today).where.not('user_id = ?', session[:user_id] ).select(:user_id, :id, :space_id, :start, :end, :seat)
 
-    names = User.joins(:bookings).where('start > ?', Date.today).where.not('user_id = ?', 1).select(:id, :first_name).to_a
+    names = User.joins(:bookings).where('start > ?', Date.today).where.not('user_id = ?', session[:user_id]).select(:id, :first_name).to_a
 
     @guest_names = Hash.new(0)
     names.each do |name|
