@@ -39,7 +39,7 @@ function total(){
       var ending = $('#booking_end_1i').val() + "-" + $('#booking_end_2i').val() + "-" + $('#booking_end_3i').val();
       ending = Date.parse(ending)
 
-      var days = ((ending - starting)/86400000)
+      var days = ((ending - starting)/86400000)+1
 
       var total = $('#booking_seat').val() * seat_price * days;
       $('#booking_total_price').val(total);
