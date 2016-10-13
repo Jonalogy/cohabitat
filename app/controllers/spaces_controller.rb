@@ -16,7 +16,6 @@ class SpacesController < ApplicationController
 
     @space_id = params[:id]
     @space_owner = Space.find(@space_id).user_id
-      # puts ">>>@space_owner: #{@space_owner}"
 
     @availabilities = Availability.where({space_id: @space_id, active: true})
 

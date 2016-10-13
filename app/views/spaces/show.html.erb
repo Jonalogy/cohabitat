@@ -1,16 +1,14 @@
-<h5>Session user_id:  <%=@current_user.id.inspect%></h5>
-<p id="notice"><%= notice %></p>
-<h3>Space_<%="#{@space_id}"%></h3>
+<p id="notice"><%# notice %></p>
+<h3><%="#{@space.space_name }"%></h3>
 
 <div class="container-fluid">
   <div class="row">
+
     <div class="col-md-8">
       <% @space.images.order('id ASC').each do |image| %>
       <img src="<%= image.url %>" alt="" class="profileImg" />
       <% end %>
     </div>
-
-
 
     <div>
       <h4>Shoutout</h4>
@@ -26,42 +24,35 @@
       <% end %>
     </div>
 
-      <% if @current_user %>
-        <%= form_for @shout do |f| %>
-          <input type="hidden" name="shout[user_id]" value="<%= @current_user.id %>">
-          <input type="hidden" name="shout[space_id]" value="<%= params[:id] %>">
-          <div class="field">
-          <%= f.text_area :message %>
-          </div>
-          <div class="actions">
-            <%= f.submit %>
-          </div>
-        <% end %>
-      <% else %>
-        <p>
-          <a href="/login">Login</a> to give a shoutout to your favourite space!
-        </p>
-      <% end %>
-
+    <% if @current_user %>
+          <%= form_for @shout do |f| %>
+            <input type="hidden" name="shout[user_id]" value="<%= @current_user.id %>">
+            <input type="hidden" name="shout[space_id]" value="<%= params[:id] %>">
+            <div class="field">
+            <%= f.text_area :message %>
+            </div>
+            <div class="actions">
+              <%= f.submit %>
+            </div>
+          <% end %>
+    <% else %>
+      <p>
+        <a href="/login">Login</a> to give a shoutout to your favourite space!
+      </p>
+    <% end %>
+  </div>
+</div>
 
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-12">
-      <h4>Space Information</h4><br>
+      <h4>Details</h4>
       <p>
-        <strong>User:</strong>
-        <%= @space.user.email %></br>
-
-        <strong>Space name:</strong>
-        <%= @space.space_name %></br>
-
         <strong>Country:</strong>
         <%= @space.country.name %></br>
 
-
         <strong>Area:</strong>
         <%= @space.area.name %></br>
-
 
         <strong>Address:</strong>
         <%= @space.address %></br>
@@ -81,16 +72,21 @@
 
         <strong>Vibe:</strong>
         <%= @space.vibe.name %></br>
+
+        <strong>Email:</strong>
+        <%= @space.user.email %></br>
       </p>
         </div>
       </div>
     </div>
 
-
-
 <div class="container-fluid">
   <div class="row">
-    <h4>Availabilities</h4>
+    <h4 id='avail_head'>Availabilities</h4>
+    <%if @current_user.id == @space_owner%>
+      <%= link_to 'New', new_availability_path(space_id: @space.id), :role => 'button', :class => "btn btn-outline-primary btn-sm"  %>
+    <%end%>
+
     <table>
         <tr>
           <th>Start</th>
@@ -118,14 +114,11 @@
         <% end %>
       </tbody>
     </table>
-    <td><%= link_to 'New', new_availability_path(space_id: @space.id)%></td>
-
   </div>
 </div>
 
-
-
-
-<%= link_to 'Edit', edit_space_path(@space) %> |
+<%if @current_user.id == @space_owner%>
+  <%= link_to 'Edit', edit_space_path(@space) %> |
+<%end%>
 <%= link_to 'Back', spaces_path %>
 <%= link_to 'Logout', logout_path, method: :delete %>
