@@ -154,7 +154,8 @@ class SpacesController < ApplicationController
       @owner_id = Space.where(id:@space_id).as_json[0]['user_id']
       @user_id = @current_user.id
 
-      if @user_id != @owner_id || @user_id != 1
+      if @user_id != @owner_id && @user_id != 1
+        flash[:error] = 'Access denied!'
         redirect_to spaces_path
       end
     end
