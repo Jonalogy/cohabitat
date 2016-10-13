@@ -8,8 +8,9 @@
 
 .search-space-image {
   width: 100%;
-  height: 150px;
-  object-fit: cover
+  height: 200px;
+  object-fit: cover;
+  padding-bottom:0.5em;
 }
 
 .bubble {
@@ -20,6 +21,118 @@
   text-align: center;
 }
 
-#avail_head{
+.background-image-main {
+  background-color: black;
+  background-image: url("http://res.cloudinary.com/dgiqrtq7k/image/upload/v1476352803/key-visual-med-50blackopacity-cropped_mgpg9b.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  position:absolute;
+  top: 0;
+  z-index: -10
+  // filter: alpha(Opacity=50);
+  // opacity: 0.5;
+}
+
+
+.background-image-search-results {
+  background-color: black;
+  background-image: url("http://res.cloudinary.com/dgiqrtq7k/image/upload/v1476360108/workspace-1-med-50blackopacity_mwcbxs.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  position:absolute;
+  top: 0;
+  z-index: -10;
+  width: 100%;
+  // height: 100%;
+  // filter: alpha(Opacity=50);
+  // opacity: 0.5;
+}
+
+.header {
+  padding-top: 150px;
+  padding-bottom:120px;
+  color: rgba(255,255,255,0.8)
+}
+
+.navbar {
+  background-color: rgba(0,0,0,0)
+}
+
+.latest-6-spaces {
+  background-color: white !important;
+  padding-top: 2em;
+  // margin-left: 3em;
+  // margin-right: 3em;
+}
+
+.text-white-opacity {
+  // height: 350px;
+  padding-top: 90px;
+  color: rgba(255,255,255,0.8);
+  padding-bottom: 80px;
+}
+
+.input-styled {
+  background-color: rgba(0,0,0,0);
+  color: rgba(255,255,255,0.8);
+  border: 2px solid rgba(255,255,255,0.8);
+  border-radius: 4px;
+  padding: 0.3em 0.5em 0.3em 0.5em;
+
+}
+
+body {
+  margin-bottom: 100px;
+}
+
+
+div > .search-results-output {
+  background-color: white !important;
+  padding-top: 1em;
+  // margin-left: 3em;
+  // margin-right: 3em;
+}
+
+.make-div-inline-block {
+  display:inline-block
+}
+
+.width-100-percent {
+  width: 100%
+}
+
+
+.no-search-found-text{
+  top: 2em;
+  padding-top: 50px;
+  color: rgba(255,255,255,0.8);
+  border: 2px solid rgba(255,255,255,0.8);
+  border-radius: 5px;
+  background-color: rgba(0,0,0,0.2)
+}
+
+.display-space-box {
+  padding-bottom: 2em;
+}
+
+.add-padding{
+  padding:1em
+}
+
+#avail_head {
   display: inline-block;
+}
+
+.background-image-search-results-2{
+  background-color: black;
+  background-image: url("http://res.cloudinary.com/dgiqrtq7k/image/upload/v1476360108/workspace-1-med-50blackopacity_mwcbxs.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  position:absolute;
+  top: 0;
+  z-index: -10;
+  width: 100%;
+  height: 100%;
+  // filter: alpha(Opacity=50);
+  // opacity: 0.5;
 }

@@ -1,78 +1,87 @@
+<div class="background-image-users-form">
 
-<!-- <%= render 'form', user: @user %> -->
-
-<%= form_for @user do |f| %>
-<% if @user.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
-
-  <ul>
-    <% @user.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
-
-
-<form>
-  <div class="container">
-    <h1>Edit Profile</h1><br>
-    <div class="form-group row">
-      <label for="email" class="col-xs-3 col-form-label"><%= f.label :email %></label>
-      <div class="col-xs-9">
-        <%= f.text_field :email,:readonly => true, :size => 80 %>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="last_name" class="col-xs-3 col-form-label"><%= f.label :first_name %></label>
-      <div class="col-xs-9">
-        <%= f.text_field :first_name, :size => 80 %>
-
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="last_name" class="col-xs-3 col-form-label"><%= f.label :last_name %></label>
-      <div class="col-xs-9">
-        <%= f.text_field :last_name, :size => 80 %>
-      </div>
-    </div>
-
-
-    <div class="form-group row">
-      <label for="profile_image" class="col-xs-3 col-form-label"><%= f.label :profile_image %></label>
-      <div class="col-xs-9">
-        <img src="<%= @user.profile_img_url %>" alt="" class="profileImg" />
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="change_profile_image" class="col-xs-3 col-form-label"><%= f.label :change_profile_image %></label>
-      <div class="col-xs-9">
-        <%= f.file_field :profile_img_url, :size => 80 %>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="bio" class="col-xs-3 col-form-label"><%= f.label :bio %></label>
-      <div class="col-xs-9">
-        <%= f.text_area :bio, :rows => 4 %>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <div class="offset-xs-3 col-xs-9">
-        <%= f.submit "Submit", class: "btn btn-primary active" %>
-      </div>
-    </div>
+  <div class="form-header center-content">
+    <h1>Edit Profile</h1>
   </div>
-</form>
+
+  <div class="space-details col-xs-12 col-md-10 offset-md-1">
+
+    <%= form_for @user do |f| %>
+      <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
+
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
 
+    <form>
+      <div class="container ">
+        <div class="row">
+          <div class="form-group col-xs-12">
+            <label for="email" class="col-xs-3 col-form-label"><%= f.label :email %></label>
+            <div class="col-xs-9">
+              <%= f.text_field :email,:readonly => true, :size => 80 %>
+            </div>
+          </div>
+        </div>
 
-<% end %>
+        <div class="form-group row">
+          <label for="last_name" class="col-xs-3 col-form-label"><%= f.label :first_name %></label>
+          <div class="col-xs-9">
+            <%= f.text_field :first_name, :size => 80 %>
 
-<%= link_to 'View', @user %> |
-<%= link_to 'Back', request.referer.present? ? request.referer : root_path %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="last_name" class="col-xs-3 col-form-label"><%= f.label :last_name %></label>
+          <div class="col-xs-9">
+            <%= f.text_field :last_name, :size => 80 %>
+          </div>
+        </div>
+
+
+        <div class="form-group row">
+          <label for="profile_image" class="col-xs-3 col-form-label"><%= f.label :profile_image %></label>
+          <div class="col-xs-9">
+            <img src="<%= @user.profile_img_url %>" alt="" class="profileImg" />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="change_profile_image" class="col-xs-3 col-form-label"><%= f.label :change_profile_image %></label>
+          <div class="col-xs-9">
+            <%= f.file_field :profile_img_url, :size => 80 %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="bio" class="col-xs-3 col-form-label"><%= f.label :bio %></label>
+          <div class="col-xs-9">
+            <%= f.text_area :bio, :rows => 4 %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="offset-xs-3 col-xs-9">
+            <%= f.submit "Submit", class: "btn btn-primary active" %>
+          </div>
+        </div>
+      </div>
+    </form>
+    <% end %>
+
+    <div class="col-xs-12">
+      <%= button_to 'View', @user, class:"created-btn", :method => :get  %>
+      <%= button_to 'Back', request.referer.present? ? request.referer : root_path , class:"created-btn", :method => :get %>
+    </div>
+
+  </div>
+
+</div>

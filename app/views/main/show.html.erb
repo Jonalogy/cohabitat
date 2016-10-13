@@ -1,40 +1,48 @@
-<h1>Search results</h1>
-<div class="center-content">
-  <% if @spaces.count > 0 %>
-  Filter by:
-  <%= select_tag :space_type_id, options_for_select(SpaceType.all.order('id ASC').collect {|x| [x.name, x.id]}.insert(0, "Space Type")),class: 'filter_options styled-dropdown' %>
-  <%= select_tag :vibe_id, options_for_select(Vibe.all.order('id ASC').collect {|x| [x.name, x.id]}.insert(0, "Vibe")), class: 'filter_options styled-dropdown'%>
-  <p>
-    Amenities:
-    <% Amenity.all.order('id ASC').collect.each do |amenity| %>
-    <label class="checkboxSpacer">
-      <%= check_box_tag "amenity_id[#{amenity.id}]", amenity.id, false, class: 'amenities_checkbox filter_options' %>
-      <%= amenity.name %>
-    </label>
-  <% end %>
-  <div class="">
-    Start <%= date_field_tag :start_date, "", class: 'filter_options', id: 'start_date'%>
-    End <%= date_field_tag :start_date,"", class: 'filter_options', id: 'end_date'%>
+    <% if @spaces.count > 0 %>
+    <div class="background-image-search-results">
+      <div class="center-content text-white-opacity">
+        <h2>Search results</h2>
+    Filter by:
+    <%= select_tag :space_type_id, options_for_select(SpaceType.all.order('id ASC').collect {|x| [x.name, x.id]}.insert(0, "Space Type")),class: 'filter_options styled-dropdown' %>
+    <%= select_tag :vibe_id, options_for_select(Vibe.all.order('id ASC').collect {|x| [x.name, x.id]}.insert(0, "Vibe")), class: 'filter_options styled-dropdown'%>
+    <div>
+      Amenities:
+      <% Amenity.all.order('id ASC').collect.each do |amenity| %>
+      <label class="checkboxSpacer">
+        <%= check_box_tag "amenity_id[#{amenity.id}]", amenity.id, false, class: 'amenities_checkbox filter_options' %>
+        <%= amenity.name %>
+      </label>
+    <% end %>
   </div>
-</div>
+      <div class="make-div-inline-block">  Start <%= date_field_tag :start_date, "", class: 'filter_options input-styled', id: 'start_date'%> </div>
+      <div style="display:inline-block">  End <%= date_field_tag :start_date,"", class: 'filter_options input-styled', id: 'end_date'%> </div>
+    </div>
 
-</p>
-  <p>
+<div class="search-results-output col-xs-12 col-md-10 offset-md-1">
+  <p class="center-content add-padding">
     Spaces found in <input type="hidden" id='area_id' value='<%= @spaces[0].area_id %>'><%= @spaces[0].area.name %>, <input type="hidden" id='country_id' value='<%= @spaces[0].country_id %>'><%= @spaces[0].country.name %>.
   </p>
-<div class="AJAXthis">
-  <% @spaces.each do |space| %>
+  <div class="AJAXthis">
+    <% @spaces.each do |space| %>
 
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <img class="search-space-image" src="<%= space.images[0].url %>" alt="" />
-      <p><a href="spaces/<%= space.id %>"><%= space.space_name %></a</p>
-      <p><%= space.space_type.name %>,<%= space.vibe.name %></p>
-    </div>
-  <% end %>
+      <div class="col-xs-12 col-sm-6 col-md-4 display-space-box">
+        <img class="search-space-image" src="<%= space.images[0].url %>" alt="" />
+        <h5><a href="spaces/<%= space.id %>"><%= space.space_name %></a></h5>
+        <span><%= space.space_type.name %>, <%= space.vibe.name %></span>
+      </div>
+    <% end %>
+  </div>
+</div>
 </div>
 
+
 <% else %>
-  <div class="">
+
+<div class="background-image-search-results-2">
+  <div class="center-content text-white-opacity">
+    <h2>Search results</h2>
+
+  <div class="center-content no-search-found-text col-xs-8 offset-xs-2">
     <p>
       No listing found. Try searching again.
     </p>
@@ -44,5 +52,12 @@
     <select name="space_area_id" id="space_area_id" class="styled-dropdown"><option value="">Select an area</option></select>
     <%= submit_tag "Search", class: "btn btn-secondary" %>
     <% end %>
+    <br/>
+    <p>
+      We heard Keong Siak in Singapore is an awesome area! Try looking there ;)
+    </p>
+    <br/>
   </div>
-<% end %>
+</div>
+
+  <% end %>

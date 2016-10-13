@@ -12,37 +12,37 @@
 <% end %>
 
 <input type="hidden" name="space[user_id]" value="<%= @current_user.id %>">
-
-<div class="container">
-  <div class="form-group row">
+<br><br>
+<div class="container form-container">
+  <div class="form-group col-md-8 offset-md-2">
     <label for="country" class="col-xs-3 col-form-label"><%= f.label :country %></label>
     <div class="col-xs-9">
       <%= f.select :country_id, Country.all.order('id ASC').collect {|x| [x.name, x.id]}, { include_blank: 'Please select country' } %>
     </div>
   </div>
 
-  <div class="form-group row">
+  <div class="form-group row col-md-8 offset-md-2">
     <label for="area" class="col-xs-3 col-form-label"><%= f.label :area_id %></label>
     <div class="col-xs-9">
       <%= f.select :area_id, Area.where(country_id: space.country_id).order('name ASC').collect {|x| [x.name, x.id]},{ include_blank: 'Please select country' } %>
     </div>
   </div>
 
-  <div class="form-group row">
+  <div class="form-group row col-md-8 offset-md-2">
     <label for="address" class="col-xs-3 col-form-label"><%= f.label :address %></label>
     <div class="col-xs-9">
       <%= f.text_area :address %>
     </div>
   </div>
 
-  <div class="form-group row">
+  <div class="form-group row col-md-8 offset-md-2">
     <label for="postal" class="col-xs-3 col-form-label"><%= f.label :postal %></label>
     <div class="col-xs-9">
       <%= f.number_field :postal %>
     </div>
   </div>
 
-  <div class="form-group row">
+  <div class="form-group row col-md-8 offset-md-2">
     <label for="space_name" class="col-xs-3 col-form-label"><%= f.label :space_name %>
     </label>
     <div class="col-xs-9">
@@ -50,7 +50,7 @@
     </div>
   </div>
 
-  <div class="form-group row">
+  <div class="form-group row col-md-8 offset-md-2">
     <label for="space_description" class="col-xs-3 col-form-label"><%= f.label :space_description %>
     </label>
     <div class="col-xs-9">
@@ -58,7 +58,7 @@
     </div>
   </div>
 
-  <div class="form-group row">
+  <div class="form-group row col-md-8 offset-md-2">
     <label for="space_type_id" class="col-xs-3 col-form-label"><%= f.label :space_type_id %></label>
     <div class="col-xs-9">
       <%= f.select :space_type_id, SpaceType.all.order('name ASC').collect {|x| [x.name, x.id]}, { include_blank: 'Please select space type' } %>
@@ -66,7 +66,7 @@
   </div>
 
 
-  <div class="form-group row">
+  <div class="form-group row col-md-8 offset-md-2">
     <label for="vibe_id" class="col-xs-3 col-form-label"><%= f.label :vibe_id %></label>
     <div class="col-xs-9">
       <%= f.select :vibe_id, Vibe.all.order('name ASC').collect {|x| [x.name, x.id]}, { include_blank: 'Please select vibe' } %>
@@ -74,51 +74,51 @@
   </div>
 
 
-  <div class="form-group row">
+  <div class="form-group row col-md-8 offset-md-2">
     <label for="amenities" class="col-xs-3 col-form-label"><%= f.label :amenities %></label>
     <div class="col-xs-9">
-      <%= f.select :amenity_ids, Amenity.all.collect {|x| [x.name,x.id]} , {}, :multiple => true %>
+      <%= f.select :amenity_ids, Amenity.all.collect {|x| [x.name,x.id]} , {}, {:multiple => true, :style => "width:auto; margin:auto; height:auto" } %>
     </div>
   </div>
 
   <!-- <% Amenity.all.collect.each do |amenity| %>
   <%= f.label amenity.name %>
-  <%= f.check_box  :amenity_ids, {:multiple => true} %>
+  <%= f.check_box  :amenity_ids, {:multiple => true} %>ameni
 
   <% end %> -->
-  
-  <div class="form-group row">
-    <label for="space_image_order" class="col-xs-3 col-form-label"><%= f.label :Workspace_Image %></label>
+
+<% if @space.images.count > 0 %>
+  <div class="form-group row col-md-8 offset-md-2">
+    <label for="space_image_order" class="col-xs-3 col-form-label"><%= f.label :Workspace_Images %></label>
     <div class="col-xs-9">
       <% @space.images.order('id ASC').each do |image| %>
       <!-- <input type="hidden" name="space[user_id]" value="<%= @current_user.id %>"> -->
-      <img src="<%= image.url %>" alt="" class="profileImg" />
+      <img src="<%= image.url %>" alt="" class="search-space-image" />
       <% end %>
     </div>
   </div>
+<% end %>
 
-  <div class="form-group row">
-    <label for="add_workspace_image_1" class="col-xs-3 col-form-label"><%= f.label :add_workspace_image_1 %></label>
+  <div class="form-group row col-md-8 offset-md-2">
+    <%= f.label :add_workspace_images %></label></br>
     <div class="col-xs-9">
       <%= f.file_field :workspace_image_url_1 %>
     </div>
   </div>
 
-  <div class="form-group row">
-    <label for="add_workspace_image_2" class="col-xs-3 col-form-label"><%= f.label :add_workspace_image_2 %></label>
+  <div class="form-group row col-md-8 offset-md-2">
     <div class="col-xs-9">
       <%= f.file_field :workspace_image_url_2 %>
     </div>
   </div>
 
-  <div class="form-group row">
-    <label for="add_workspace_image_3" class="col-xs-3 col-form-label"><%= f.label :add_workspace_image_3 %></label>
+  <div class="form-group row col-md-8 offset-md-2">
     <div class="col-xs-9">
       <%= f.file_field :workspace_image_url_3 %>
     </div>
   </div>
 
-  <div class="form-group row">
+  <div class="form-group row col-md-8 offset-md-2">
     <div class="offset-xs-3 col-xs-9">
       <%= f.submit "Update Space", class: "btn active" %>
     </div>

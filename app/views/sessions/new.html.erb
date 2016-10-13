@@ -1,14 +1,18 @@
+<div class="background-image-search-results-2">
 
-<%= form_for :user do |f| %>
+  <div class="center-content text-white-opacity">
+    <h2>Log In</h2>
 
-<h4>Log In</h4>
+  <div class="center-content no-search-found-text col-xs-8 offset-xs-2 col-md-6 offset-md-3">
+    <%= form_for :user do |f| %>
 
-<%= f.label :email, "Email" %>
-<%= f.email_field :email, placeholder: "Enter your email" %><br>
+    <%= f.email_field :email, placeholder: "Email", class:"login-input" %><br>
 
-<%= f.label :password, "Password" %>
-<%= f.password_field :password, placeholder: "Enter your password" %><br>
+    <%= f.password_field :password, placeholder: "Password", class:"login-input" %><br>
+  <br/>
+    <%= f.submit "Login", class:"btn btn-secondary" %>
 
-<%= f.submit "Login" %>
-
-<% end %>
+    <% end %>
+  <br/>
+  </div>
+</div>
