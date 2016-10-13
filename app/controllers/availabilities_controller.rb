@@ -78,7 +78,7 @@ class AvailabilitiesController < ApplicationController
 
     def is_admin?
       if @current_user.id != 1
-        flash[:error] = "Admin priviledges denied"
+        flash[:danger] = "Admin priviledges denied"
         redirect_to root_path
       end
     end

@@ -155,7 +155,7 @@ class SpacesController < ApplicationController
       @user_id = @current_user.id
 
       if @user_id != @owner_id && @user_id != 1
-        flash[:error] = 'Access denied!'
+        flash[:danger] = 'Access denied!'
         redirect_to spaces_path
       end
     end
