@@ -44,6 +44,8 @@ $(document).on('turbolinks:load', function() {
             }
           }
           else {
+            $('.background-image-search-results').addClass('background-image-search-results-2')
+            $('.background-image-search-results-2').addClass('background-image-search-results')
             $('.AJAXthis').append("<div class='center-content add-padding'><p>No listings found. Try other combinations.</p></div>")
           }
 
