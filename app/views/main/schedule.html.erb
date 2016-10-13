@@ -2,50 +2,51 @@
 
 <div class="container-fluid">
 <div class="row">
+<div class="col-xs-12 col-md-8 offset-md-2">
     <h3>My Bookings</h3>
-
-    <% @my_bookings.each do |booking| %>
-    <div class="col-md-10 bubble">
-    </br>
-      <strong>Space Name:</strong> <%=@spaces_hash[booking.space_id]%>
-      <strong>Seats:</strong> <%=booking.seat%></br>
-      <strong>Starting:</strong> <%=booking.start.strftime("%d-%b-%Y")%>
-      <strong>Ending:</strong> <%=booking.end.strftime("%d-%b-%Y")%></br></br>
-    </div>
-    <%end %>
+    <%if @my_bookings.length != 0 %>
+        <% @my_bookings.each do |booking| %>
+          <div class="col-xs-12 bubble">
+          </br>
+          <strong>Space Name:</strong> <%=@spaces_hash[booking.space_id]%>
+          <strong>Seats:</strong> <%=booking.seat%></br>
+          <strong>Starting:</strong> <%=booking.start.strftime("%d-%b-%Y")%>
+          <strong>Ending:</strong> <%=booking.end.strftime("%d-%b-%Y")%></br></br>
+          </div>
+        <%end %>
+    <%end%> <%#End of if @my_bookings.length%>
+</div>
 </div>
 </div>
 
 <div class="container-fluid">
 <div class="row">
-  <br/>
+<div class="col-xs-12 col-md-8 offset-md-2">
   <h3>Guest Bookings</h3>
-  <% @guest_bookings.each do |guest_booking| %>
-    <div class="col-md-10 bubble">
-    </br>
-      <strong>Booking_id: </strong> <%=guest_booking.id%><br/>
+  <%if @guest_bookings.length != 0%>
+      <% @guest_bookings.each do |guest_booking| %>
+        <div class="col-xs-12 bubble">
+        </br>
+          <strong>Booking_id: </strong> <%=guest_booking.id%><br/>
 
-      <strong>By user_id: </strong> <%=guest_booking.user_id%><br/>
+          <strong>By user_id: </strong> <%=guest_booking.user_id%><br/>
 
-      <strong> Booked Space_id: </strong> <%=guest_booking.space_id%><br/>
+          <strong> Booked Space_id: </strong> <%=guest_booking.space_id%><br/>
 
-      <strong>Starting: </strong> <%=guest_booking.start.strftime("%d-%b-%Y")%><br/>
+          <strong>Starting: </strong> <%=guest_booking.start.strftime("%d-%b-%Y")%><br/>
 
-      <strong> Ending: </strong> <%=guest_booking.end.strftime("%d-%b-%Y")%><br/>
+          <strong> Ending: </strong> <%=guest_booking.end.strftime("%d-%b-%Y")%><br/>
 
-      <strong> Seats: </strong> <%=guest_booking.seat%><br/><br/>
+          <strong> Seats: </strong> <%=guest_booking.seat%><br/><br/>
 
-    </div>
+        </div>
+      <%end%>
+  <%else%>
+      <div class="col-xs-12 bubble">
+        You have not guest bookings yet...
+      </div>
   <%end%>
+
 </div>
 </div>
-
-
-<%#<strong>Guest_id: </strong>%> <%#guest%>
-<%# booking 1... %>
-<%# booking 2...%>
-
-
-<%=link_to 'Login', login_path%>
-<%=link_to 'Register', new_user_path%>
-<%=link_to 'Logout', logout_path, method: :delete%>
+</div>

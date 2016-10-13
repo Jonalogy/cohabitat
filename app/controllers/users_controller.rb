@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :is_authenticated, only:[:update, :destroy, :show, :edit]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :is_admin?, except: [:new, :create, :edit, :update]
+  before_action :ownership, only: [:edit, :update]
 
   # GET /users
   def index
@@ -43,7 +45,8 @@ class UsersController < ApplicationController
     end
       if @user.update(user_params)
         flash[:success] = "User account updated."
-        redirect_to @user
+        redirect_to root_path
+        return
       else
         render :edit
       end
@@ -64,11 +67,29 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :profile_img_url, :wallet, :bio)
+      params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :profile_img_url, :bio)
     end
 
     def show_user_params
       params.require(:user).permit(:email, :first_name, :last_name, :profile_img_url,  :bio)
     end
 
+    def is_admin?
+      if session[:user_id] != 1
+        flash[:danger] = "Admin priviledges denied"
+        redirect_to root_path
+        return
+      end
+    end
+
+    def ownership
+      @user_id = params[:id]
+      @owner_id = session[:user_id]
+
+      if (@user_id != @owner_id.to_s && @owner_id != 1)
+        flash[:danger] = 'Access Denied!'
+        redirect_to root_path
+        return
+      end
+    end#ownership()
 end

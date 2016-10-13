@@ -110,7 +110,6 @@ ActiveRecord::Schema.define(version: 20161010060800) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "profile_img_url"
-    t.decimal  "wallet",          precision: 13, scale: 2
     t.text     "bio"
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false

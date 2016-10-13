@@ -6,8 +6,6 @@ one:
   first_name: MyString
   last_name: MyString
   profile_img_url: MyString
-  wallet: 
-  wallet: 
   bio: MyText
 
 two:
@@ -16,6 +14,4 @@ two:
   first_name: MyString
   last_name: MyString
   profile_img_url: MyString
-  wallet: 
-  wallet: 
   bio: MyText
