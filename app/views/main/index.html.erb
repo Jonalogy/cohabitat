@@ -2,8 +2,7 @@
   <div class="center-content" >
     <div class="header">
       <h2>Co-Habitat.</h2>
-      <h5>Join us in revolutionizing workspaces.</h5>
-      <h6>Find a Habitat:</h6>
+      <h5>Join us in revolutionizing workspaces.</h5><br/>
       <%= form_tag(search_path, :method => "get", id: "search-form") do %>
       <!-- <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %> -->
       <%= select_tag :space_country_id, options_for_select(Country.all.order('id ASC').collect {|x| [x.name, x.id]}.insert(0, "Select a country")), class: "styled-dropdown"%>
