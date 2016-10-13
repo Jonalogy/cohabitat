@@ -8,17 +8,26 @@
         <% @my_bookings.each do |booking| %>
           <div class="col-xs-12 bubble">
           </br>
+          <strong>Booking_id:</strong> <%=booking.id%></br>
           <strong>Space Name:</strong> <%=@spaces_hash[booking.space_id]%>
-          <strong>Seats:</strong> <%=booking.seat%></br>
+          <strong>Pax:</strong> <%=booking.seat%></br>
           <strong>Starting:</strong> <%=booking.start.strftime("%d-%b-%Y")%>
           <strong>Ending:</strong> <%=booking.end.strftime("%d-%b-%Y")%></br></br>
+          <%= link_to 'View Space', space_path(booking.space_id), :role => 'button', :class => "btn btn-outline-primary btn-sm" %>
+          <%= link_to 'Delete Booking', booking, method: :delete, data: { confirm: 'Are you sure? No refunds will be made to you.' }, :role => 'button', :class => "btn btn-outline-danger btn-sm" %>
           </div>
         <%end %>
+    <%else%>
+        <div class="col-xs-12 bubble">
+          You have not made any bookings yet. Go find one!
+
+        </div>
     <%end%> <%#End of if @my_bookings.length%>
 </div>
 </div>
 </div>
-
+<br/>
+<br/>
 <div class="container-fluid">
 <div class="row">
 <div class="col-xs-12 col-md-8 offset-md-2">

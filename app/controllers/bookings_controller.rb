@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
-  before_action :is_admin?, only: [:index]
+  before_action :is_admin?, only: [:index, :edit, :show, :update]
 
   # GET /bookings
   def index
@@ -163,7 +163,7 @@ class BookingsController < ApplicationController
   # DELETE /bookings/1
   def destroy
     @booking.destroy
-    redirect_to bookings_url, notice: 'Booking was successfully destroyed.'
+    redirect_to schedule_path, notice: 'Booking was successfully destroyed.'
   end
 
   private
