@@ -60,9 +60,9 @@
             <%= space.vibe.name %></br>
           </div>
           <div class="col-sm-2">
-            <%= button_to 'Show', space, :role => 'button', :class => "btn-habitat-actions", :method => :get %>
-              <%= button_to 'Edit', edit_space_path(space), :role => 'button', :class => "btn-habitat-actions", :method => :get %>
-              <%= button_to 'Delete', space, method: :delete, data: { confirm: 'Are you sure? This action cannot be undone!' }, :role => 'button', :class => "btn-habitat-actions"  %>
+            <%= button_to 'Show', space, :role => 'button', :class => "btn-habitat-actions manage-habitat", :method => :get %>
+              <%= button_to 'Edit', edit_space_path(space), :role => 'button', :class => "btn-habitat-actions manage-habitat", :method => :get %>
+              <%= button_to 'Delete', space, method: :delete, data: { confirm: 'Are you sure? This action cannot be undone!' }, :role => 'button', :class => "btn-habitat-actions manage-habitat"  %>
           </div>
         </div>
 
