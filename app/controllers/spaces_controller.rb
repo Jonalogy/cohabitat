@@ -154,7 +154,7 @@ class SpacesController < ApplicationController
       @owner_id = Space.where(id:@space_id).as_json[0]['user_id']
       @user_id = @current_user.id
 
-      if @user_id != @owner_id
+      if @user_id != @owner_id || @user_id != 1
         redirect_to spaces_path
       end
     end
