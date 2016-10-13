@@ -1,5 +1,6 @@
 <p id="notice"><%# notice %></p>
 <h3><%="#{@space.space_name }"%></h3>
+<h5>User = <%="#{@user_id}"%></h5>
 
 <div class="container-fluid">
   <div class="row">
@@ -16,7 +17,7 @@
         <p>
           <%= shout.message %><br/>
           by <a href="/users/<%= shout.user.id %>/"><%= shout.user.first_name %></a>
-          <% if shout.user_id == @current_user.id %>
+          <% if shout.user_id == @user_id%>
           <%= link_to 'Edit', edit_shout_path(shout) %>
           <%= link_to 'Delete', shout, method: :delete, data: { confirm: 'Are you sure?' } %>
           <% end %>
@@ -26,7 +27,7 @@
 
     <% if @current_user %>
           <%= form_for @shout do |f| %>
-            <input type="hidden" name="shout[user_id]" value="<%= @current_user.id %>">
+            <input type="hidden" name="shout[user_id]" value="<%= @user_id%>">
             <input type="hidden" name="shout[space_id]" value="<%= params[:id] %>">
             <div class="field">
             <%= f.text_area :message %>
@@ -83,7 +84,7 @@
 <div class="container-fluid">
   <div class="row">
     <h4 id='avail_head'>Availabilities</h4>
-    <%if @current_user.id == @space_owner%>
+    <%if @user_id == @space_owner%>
       <%= link_to 'New', new_availability_path(space_id: @space.id), :role => 'button', :class => "btn btn-outline-primary btn-sm"  %>
     <%end%>
 
@@ -102,13 +103,14 @@
             <td><%= availability.end.strftime("%d-%b-%Y") %></td>
             <td><%= availability.seat %></td>
             <td><%= availability.seat_price %></td>
-              <%if @current_user.id != @space_owner%>
+              <%if @user_id == 'public' %>
+                <td><%=link_to 'Log In to Book', login_path%></td>
+              <%elsif @user_id!= @space_owner%>
                 <td><%= link_to 'Book', new_booking_path(avail_id: availability.id, space_id: availability.space_id)%></td>
               <%end%>
-            <td><%= link_to 'Show', availability %></td>
-            <%if @current_user.id == @space_owner%>
+            <%if @user_id== @space_owner%>
               <td><%= link_to 'Edit', edit_availability_path(availability) %></td>
-              <td><%= link_to 'Destroy', availability, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'Delete', availability, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <%end%>
           </tr>
         <% end %>
@@ -117,7 +119,7 @@
   </div>
 </div>
 
-<%if @current_user.id == @space_owner%>
+<%if @user_id== @space_owner%>
   <%= link_to 'Edit', edit_space_path(@space) %> |
 <%end%>
 <%= link_to 'Back', spaces_path %>

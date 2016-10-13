@@ -66,7 +66,7 @@ class AvailabilitiesController < ApplicationController
 
     def ownership
       @space_id = params[:space_id] ||=@availability[:space_id]
-      puts ">>>space_id: #{@space_id} and  #{@space_id.class}"
+      # puts ">>>space_id: #{@space_id} and  #{@space_id.class}"
 
       @owner_id = Space.where(id:@space_id).as_json[0]['user_id']
       @user_id = @current_user.id

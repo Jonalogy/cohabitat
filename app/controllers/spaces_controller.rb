@@ -1,6 +1,7 @@
 class SpacesController < ApplicationController
   before_action :set_space, only: [:show, :edit, :update, :destroy]
   before_action :ownership, only: [:edit, :destroy]
+  # before_action :is_authenticated
 
   # GET /spaces
   def index
@@ -13,6 +14,7 @@ class SpacesController < ApplicationController
   def show
     @shout = Shout.new
       # puts ">>>url_params: #{params[:id].inspect}"
+    @user_id = session[:user_id] ||= 'public'
 
     @space_id = params[:id]
     @space_owner = Space.find(@space_id).user_id
@@ -155,8 +157,10 @@ class SpacesController < ApplicationController
       @user_id = @current_user.id
 
       if @user_id != @owner_id && @user_id != 1
-        flash[:danger] = 'Access denied!'
-        redirect_to spaces_path
+        if @user_id != nil
+          flash[:danger] = 'Access denied!'
+          redirect_to spaces_path
+        end
       end
     end
 
