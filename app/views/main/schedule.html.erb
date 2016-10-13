@@ -1,74 +1,108 @@
-<h1>Schedule</h1>
 
-<div class="container-fluid">
-<div class="row">
-<div class="col-xs-12 col-md-8 offset-md-2">
-    <h3>My Bookings</h3>
-    <%if @my_bookings.length != 0 %>
-        <% @my_bookings.each do |booking| %>
-          <div class="col-xs-12 bubble">
-          </br>
-          <strong>Space Name:</strong> <%=@spaces_hash[booking.space_id]%>
-          <span>, <span>
-          <strong>Pax:</strong> <%=booking.seat%></br>
-          <strong>Starting:</strong> <%=booking.start.strftime("%d-%b-%Y")%>
-          <span>, <span>
-          <strong>Ending:</strong> <%=booking.end.strftime("%d-%b-%Y")%></br>
-          <strong>Booking_id:</strong> <%=booking.id%></br>
+<div class="background-image-search-results">
 
-          <%= link_to 'View Space', space_path(booking.space_id), :role => 'button', :class => "btn btn-outline-primary btn-sm" %>
-          <%= link_to 'Delete Booking', booking, method: :delete, data: { confirm: 'Are you sure? No refunds will be made to you.' }, :role => 'button', :class => "btn btn-outline-danger btn-sm" %>
-          </br>
 
-          </div>
-        <%end %>
-    <%else%>
-        <div class="col-xs-12 bubble">
-          You have not made any bookings yet. Go find one!
+  <div class="space-body center-content">
 
-        </div>
-    <%end%> <%#End of if @my_bookings.length%>
-</div>
-</div>
-</div>
-<br/>
-<br/>
-<div class="container-fluid">
-<div class="row">
-<div class="col-xs-12 col-md-8 offset-md-2">
-  <h3>Guest Bookings</h3>
-  <%if @guest_bookings.length != 0%>
-      <% @guest_bookings.each do |guest_booking| %>
-        <div class="col-xs-12 bubble">
-        </br>
 
-          <!-- <strong>Booked Space: </strong> <%#@space_names[guest_booking.space_id]%>
-          <span>, <span> -->
-          <strong>Booked Space_id: </strong> <%=guest_booking.space_id%><br/>
+    <h1>Schedule</h1>
+  </div>
 
-          <!-- <strong>By Guest: </strong> <%#@guest_names[guest_booking.user_id]%>
-          <span>, <span> -->
-          <strong>User_id: </strong><%=guest_booking.user_id%><br/>
 
-          <strong>Starting: </strong> <%=guest_booking.start.strftime("%d-%b-%Y")%>
-          <strong>Ending: </strong> <%=guest_booking.end.strftime("%d-%b-%Y")%><br/>
+<!-- <div class="space-details col-xs-12 col-md-10 offset-md-1"> -->
 
-          <strong>Booking_id: </strong> <%=guest_booking.id%>
-          <span>, <span>
-          <strong>Seats: </strong> <%=guest_booking.seat%><br/>
+  <div class="container-fluid col-md-10 offset-md-1 habitat-table">
+    <div class="row center-content col-xs-12">
+      <br/>
+      <h3>My Bookings</h3>
+      <br/>
 
-          <%= link_to 'View Guest', user_path(guest_booking.user_id), :role => 'button', :class => "btn btn-outline-primary btn-sm" %>
-          <%= link_to 'Revoke Booking', guest_booking, method: :delete, data: { confirm: 'Are you sure? Guests will not be informed of the revole. Feature under construction' }, :role => 'button', :class => "btn btn-outline-danger btn-sm" %>
-        </br>
+      <div class=" center-content">
+        <%if @my_bookings.length != 0 %>
+            <% @my_bookings.each do |booking| %>
+              <div class="col-xs-12">
+              </br>
+              <strong>Space Name:</strong> <%=@spaces_hash[booking.space_id]%>
+              <span>, <span>
+              <strong>Pax:</strong> <%=booking.seat%></br>
+              <strong>Starting:</strong> <%=booking.start.strftime("%d-%b-%Y")%>
+              <span>, <span>
+              <strong>Ending:</strong> <%=booking.end.strftime("%d-%b-%Y")%></br>
+              <strong>Booking_id:</strong> <%=booking.id%></br>
 
-        </div>
-      <%end%>
-  <%else%>
-      <div class="col-xs-12 bubble">
-        You have not guest bookings yet...
+              <%= link_to 'View Space', space_path(booking.space_id), :role => 'button', :class => "btn btn-outline-primary btn-sm" %>
+              <%= link_to 'Delete Booking', booking, method: :delete, data: { confirm: 'Are you sure? No refunds will be made to you.' }, :role => 'button', :class => "btn btn-outline-danger btn-sm" %>
+              </br>
+
+              </div>
+            <%end %>
+        <%else%>
+            <div class="col-xs-12">
+              You have not made any bookings yet. Go find one!<br/>
+
+            </div>
+        <%end%> <%#End of if @my_bookings.length%>
+
       </div>
-  <%end%>
+
+    </div>
+ </div>
+
+
+
+
+ <div class="container-fluid col-md-10 offset-md-1 habitat-table">
+   <div class="row center-content col-xs-12">
+     <br/>
+     <h3>Guest Bookings</h3>
+     <br/>
+
+     <div class="center-content">
+       <%if @guest_bookings.length != 0%>
+           <% @guest_bookings.each do |guest_booking| %>
+             <div class="col-xs-12">
+             </br>
+
+               <!-- <strong>Booked Space: </strong> <%=@space_names[guest_booking.space_id]%>
+               <span>, <span> -->
+               <strong>Booked Space_id: </strong> <%=guest_booking.space_id%><br/>
+
+               <!-- <strong>By Guest: </strong> <%=@guest_names[guest_booking.user_id]%>
+               <span>, <span> -->
+               <strong>User_id: </strong><%=guest_booking.user_id%><br/>
+
+               <strong>Starting: </strong> <%=guest_booking.start.strftime("%d-%b-%Y")%>
+               <strong>Ending: </strong> <%=guest_booking.end.strftime("%d-%b-%Y")%><br/>
+
+               <strong>Booking_id: </strong> <%=guest_booking.id%>
+               <span>, <span>
+               <strong>Seats: </strong> <%=guest_booking.seat%><br/>
+
+               <%= link_to 'View Guest', user_path(guest_booking.user_id), :role => 'button', :class => "btn btn-outline-primary btn-sm" %>
+               <%= link_to 'Revoke Booking', guest_booking, method: :delete, data: { confirm: 'Are you sure? Guests will not be informed of the revole. Feature under construction' }, :role => 'button', :class => "btn btn-outline-danger btn-sm" %>
+             </br>
+
+             </div>
+           <%end%>
+       <%else%>
+           <div class="col-xs-12">
+             You have not guest bookings yet...<br/>
+           </div>
+       <%end%>
+     </div>
+
+   </div>
+</div>
+
+
+
+
 
 </div>
-</div>
+
+<!-- <%= link_to 'Logout', logout_path, method: :delete %> -->
+
+
+
+
 </div>
