@@ -12,9 +12,12 @@
           <strong>Space Name:</strong> <%=@spaces_hash[booking.space_id]%>
           <strong>Pax:</strong> <%=booking.seat%></br>
           <strong>Starting:</strong> <%=booking.start.strftime("%d-%b-%Y")%>
-          <strong>Ending:</strong> <%=booking.end.strftime("%d-%b-%Y")%></br></br>
+          <strong>Ending:</strong> <%=booking.end.strftime("%d-%b-%Y")%></br>
+
           <%= link_to 'View Space', space_path(booking.space_id), :role => 'button', :class => "btn btn-outline-primary btn-sm" %>
           <%= link_to 'Delete Booking', booking, method: :delete, data: { confirm: 'Are you sure? No refunds will be made to you.' }, :role => 'button', :class => "btn btn-outline-danger btn-sm" %>
+          </br>
+
           </div>
         <%end %>
     <%else%>
@@ -46,7 +49,11 @@
 
           <strong> Ending: </strong> <%=guest_booking.end.strftime("%d-%b-%Y")%><br/>
 
-          <strong> Seats: </strong> <%=guest_booking.seat%><br/><br/>
+          <strong> Seats: </strong> <%=guest_booking.seat%><br/>
+
+          <%= link_to 'View Guest', user_path(guest_booking.user_id), :role => 'button', :class => "btn btn-outline-primary btn-sm" %>
+          <%= link_to 'Revoke Booking', guest_booking, method: :delete, data: { confirm: 'Are you sure? Guests will not be informed of the revole. Feature under construction' }, :role => 'button', :class => "btn btn-outline-danger btn-sm" %>
+        </br>
 
         </div>
       <%end%>
