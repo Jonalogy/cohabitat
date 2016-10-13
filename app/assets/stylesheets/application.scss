@@ -17,33 +17,64 @@
  @import "bootstrap";
 
  .nav > li > a:hover{
-     background-color:#f2f2f2;
+    background-color:rgba(0,0,0,0);
+    font-weight: bold;
  }
 
+ .navbar-brand a:hover {
+    background-color:rgba(0,0,0,0);
+    font-weight: bold;
+ }
+
+.nav-link, .navbar-brand {
+  color: white !important;
+  text-shadow: 2px 2px 8px black;
+}
  .navbar{
-    background-color:white;
-  }
+    // background-color:white;
+  background-color: rgba(0,0,0,0);
+  // position: fixed;
+  color: white;
+}
 
 .center-content {
 text-align: center;
 }
 
 .checkboxSpacer {
-  padding: 0.3em
+  padding: 0.1em 0.3em 0.1em 0.3em
 }
 
 .form-bar {
   border:1px solid grey;
-  padding:2em
+  padding:2em;
 }
 
 .styled-dropdown {
-  border: 1px solid #ccc;
+  background-color:rgba(0,0,0,0.0);
+  color:rgba(255,255,255,0.8);
+  border: 2px solid rgba(255,255,255,0.8);
   font-size: 16px;
   height: 38px;
-  margin: 0.3em 0
+  margin: 0.3em 0;
+  // background:none; -webkit-appearance:none
 }
 
 .alert {
   border-radius: 0;
+}
+
+
+body {
+  background-color: black;
+  font-family: 'Catamaran', sans-serif;
+}
+
+.this-footer {
+  clear:both;
+  // width: 100%;
+  background-color: #0d1015;
+  color: white;
+  // bottom: 0;
+  // position: absolute;
 }
