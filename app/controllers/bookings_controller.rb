@@ -29,10 +29,6 @@ class BookingsController < ApplicationController
 
   # POST /bookings
   def create
-    # puts ">>>Test params[:booking]=> #{params[:booking].inspect}"
-    # puts ">>>Test params[:booking][:start]=> #{params[:booking][:start].inspect}"
-    # puts ">>>Test params[:booking][:end]=> #{params[:booking][:end].inspect}"
-    # puts ">>>Test params[:booking][:availability_id]=> #{params[:booking][:availability_id].inspect}"
     avail_id = params[:booking][:availability_id]
     @availability = Availability.find(avail_id)
     if @availability.active == false
@@ -85,6 +81,7 @@ class BookingsController < ApplicationController
             Availability.create!(@new_avail_2.attributes)
           end
           flash[:success] =  'Booking was successfully created.'
+          redirect_to schedule_path
         elsif (@book_start > @avail_start || @book_end < @avail_end) && @book_seat < @avail_seat
           seats_left =  @avail_seat - @book_seat
           @new_avail = @availability.dup #duplicates instance
@@ -107,6 +104,7 @@ class BookingsController < ApplicationController
             Availability.create!(@new_avail_2.attributes)
           end
           flash[:success] =  'Booking was successfully created.'
+          redirect_to schedule_path
         end
 
 
