@@ -14,6 +14,16 @@
 <input type="hidden" name="space[user_id]" value="<%= @current_user.id %>">
 <br><br>
 <div class="container form-container">
+
+  <div class="form-group row col-md-8 offset-md-2">
+    <label for="space_name" class="col-xs-3 col-form-label"><%= f.label :space_name %>
+    </label>
+    <div class="col-xs-9">
+      <%= f.text_field :space_name %>
+    </div>
+  </div>
+
+
   <div class="form-group col-md-8 offset-md-2">
     <label for="country" class="col-xs-3 col-form-label"><%= f.label :country %></label>
     <div class="col-xs-9">
@@ -39,14 +49,6 @@
     <label for="postal" class="col-xs-3 col-form-label"><%= f.label :postal %></label>
     <div class="col-xs-9">
       <%= f.number_field :postal %>
-    </div>
-  </div>
-
-  <div class="form-group row col-md-8 offset-md-2">
-    <label for="space_name" class="col-xs-3 col-form-label"><%= f.label :space_name %>
-    </label>
-    <div class="col-xs-9">
-      <%= f.text_field :space_name %>
     </div>
   </div>
 
