@@ -4,6 +4,7 @@
 
 ## Populating Country's select_tag
 **1. From index.html.erb**
+
 Query is done to populate all countries
 
 ```erb
