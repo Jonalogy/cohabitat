@@ -4,7 +4,6 @@ class MainController < ApplicationController
   def index
     @spaces = Space.all.order("id desc").limit(6)
     @current_user = User.find_by_id(session[:user_id])
-    puts ">>>@current_user: #{@current_user.inspect}"
   end
 
   def show
@@ -25,9 +24,9 @@ class MainController < ApplicationController
       @spaces = @spaces.where(vibe_id: params["vibe_id"])
     end
     if params["amenities_ids"]
-      params["amenities_ids"].each do |amenity|
-        @spaces = @spaces.includes(:amenities).where("amenities.id" => amenity)
-      end
+        params["amenities_ids"].each do |amenity|
+          @spaces = @spaces.includes(:amenities).where("amenities.id" => amenity)
+        end #params["amenities_ids"].each
     end
 
     if params["start_date"] && params["end_date"]
