@@ -71,7 +71,7 @@ Populate data returned from area_controller using DOM manipulations
 ## Filtering Search Results
 
 ** 1. main_controller.rb **
-```rb
+```ruby
 def show
   if params[:space_area_id] != ""
     @spaces = Space.where(country_id: params[:space_country_id], area_id: params[:space_area_id]).order("RANDOM()")
