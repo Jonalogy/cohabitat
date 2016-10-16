@@ -9,13 +9,13 @@
             <%= select_tag :vibe_id, options_for_select(Vibe.all.order('id ASC').collect {|x| [x.name, x.id]}.insert(0, "Vibe")), class: 'filter_options styled-dropdown'%>
 
             <div>
-              Amenities:
-              <% Amenity.all.order('id ASC').collect.each do |amenity| %>
-              <label class="checkboxSpacer">
-                <%= check_box_tag "amenity_id[#{amenity.id}]", amenity.id, false, class: 'amenities_checkbox filter_options' %>
-                <%= amenity.name %>
-              </label>
-            <% end %>
+                Amenities:
+                <% Amenity.all.order('id ASC').collect.each do |amenity| %>
+                <label class="checkboxSpacer">
+                  <%= check_box_tag "amenity_id[#{amenity.id}]", amenity.id, false, class: 'amenities_checkbox filter_options' %>
+                  <%= amenity.name %>
+                </label>
+                <% end %>
             </div>
 
             <div class="make-div-inline-block">
@@ -44,8 +44,8 @@
         </div>
 
 
-    </div> <!--<div class="search-results-output col-xs-12 col-md-10 offset-md-1">--->
-  </div> <!--<div class="background-image-search-results">-->
+    </div> <%# <div class="search-results-output col-xs-12 col-md-10 offset-md-1"> %>
+  </div> <%# <div class="background-image-search-results"> %>
 
 
 <% else %>

@@ -66,3 +66,49 @@ Populate data returned from area_controller using DOM manipulations
       } /*END of .done()*/).fail(()=>{console.log("failed")})
   )
 ```
+
+## Filtering Search Results
+
+** 1. main_controller.rb **
+```rb
+def show
+  if params[:space_area_id] != ""
+    @spaces = Space.where(country_id: params[:space_country_id], area_id: params[:space_area_id]).order("RANDOM()")
+  else
+    flash[:danger] = "Please select country."
+    redirect_to root_path
+  end
+end
+```
+
+**2.show.html.erb**
+> We will only touch on populating the extra filter option. If @spaces is not empty:
+
+```erb
+
+<div class="center-content text-white-opacity">
+  <h2>Search results</h2>
+      Filter by:
+
+      <%= select_tag :space_type_id, options_for_select(SpaceType.all.order('id ASC').collect {|x| [x.name, x.id]}.insert(0, "Space Type")),class: 'filter_options styled-dropdown' %>
+      <%= select_tag :vibe_id, options_for_select(Vibe.all.order('id ASC').collect {|x| [x.name, x.id]}.insert(0, "Vibe")), class: 'filter_options styled-dropdown'%>
+
+      <div>
+          Amenities:
+          <% Amenity.all.order('id ASC').collect.each do |amenity| %>
+          <label class="checkboxSpacer">
+            <%= check_box_tag "amenity_id[#{amenity.id}]", amenity.id, false, class: 'amenities_checkbox filter_options' %>
+            <%= amenity.name %>
+          </label>s
+          <% end %>
+      </div>
+
+      <div class="make-div-inline-block">
+          Start <%= date_field_tag :start_date, "", class: 'filter_options input-styled', id: 'start_date'%>
+      </div>
+
+      <div style="display:inline-block">
+        End <%= date_field_tag :start_date,"", class: 'filter_options input-styled', id: 'end_date'%>
+      </div>
+</div>
+```
