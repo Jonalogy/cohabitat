@@ -10,6 +10,10 @@ class SpacesController < ApplicationController
     @spaces = Space.where(:user_id => @user_id)
   end
 
+  def admin_view_all
+    @all_spaces = Space.all
+  end
+
   # GET /spaces/1
   def show
     @shout = Shout.new
