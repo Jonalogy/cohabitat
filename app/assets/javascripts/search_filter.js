@@ -22,10 +22,18 @@ $(document).on('turbolinks:load', function() {
       }
     }
 
-    if (($("#start_date").val() != "") && ($("#end_date").val() != "")){
-      filter_options["start_date"] = $("#start_date").val()
-      filter_options["end_date"] = $("#end_date").val()
+    if (($("#start_date__1i").val() != "") && ($("#end_date__1i").val() != "")){
+
+      if (($("#start_date__2i").val() != "") && ($("#end_date__2i").val() != "")){
+
+        if (($("#start_date__3i").val() != "") && ($("#end_date__3i").val() != "")){
+
+          filter_options["start_date"] = $("#start_date__1i").val() + "-" + $("#start_date__2i").val() + '-' + $("#start_date__3i").val()
+          filter_options["end_date"] = $("#end_date__1i").val() + "-" + $("#end_date__2i").val() + '-' + $("#end_date__3i").val()
+        }
+      }
     }
+
 
     console.log("filter_options: "+ JSON.stringify(filter_options))
 
@@ -40,7 +48,7 @@ $(document).on('turbolinks:load', function() {
 
           if (data.length > 0){
             for (var i = 0 ; i < data.length ; i++) {
-              $('.AJAXthis').append("<div class='col-xs-12 col-sm-6 col-md-4 display-space-box'><img class='search-space-image' src='"+ data[i]["images"][0]["url"] +"' alt='space image' /><p><a href='/spaces/" + data[0].id + "'>" + data[0].space_name + "</a></p><p>" + data[0].space_type.name + ", " + data[0].vibe.name + "</p></div>")
+              $('.AJAXthis').append("<div class='col-xs-12 col-sm-6 col-md-4 display-space-box'><img class='search-space-image' src='"+ data[i]["images"][0]["url"] +"' alt='space image' /><p><a href='/spaces/" + data[i].id + "'>" + data[i].space_name + "</a></p><p>" + data[i].space_type.name + ", " + data[i].vibe.name + "</p></div>")
             }
           }
           else {
