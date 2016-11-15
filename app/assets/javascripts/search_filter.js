@@ -39,7 +39,6 @@ $(document).on('turbolinks:load', function() {
           data: filter_options,
           dataType: 'json'
         }).done(function (data) {
-          console.log(data)
           $('.AJAXthis').empty()
 
           if (data.length > 0){
