@@ -2,8 +2,6 @@ $(document).on('turbolinks:load', function() {
   console.log("search_filter.js loaded");
 
   $('.filter_options').change(function (event) {
-    console.log("toggling")
-
 
     var filter_options = new Object()
     filter_options["country_id"] = $('#country_id').val()
@@ -27,15 +25,13 @@ $(document).on('turbolinks:load', function() {
       if (($("#start_date__2i").val() != "") && ($("#end_date__2i").val() != "")){
 
         if (($("#start_date__3i").val() != "") && ($("#end_date__3i").val() != "")){
-
           filter_options["start_date"] = $("#start_date__1i").val() + "-" + $("#start_date__2i").val() + '-' + $("#start_date__3i").val()
           filter_options["end_date"] = $("#end_date__1i").val() + "-" + $("#end_date__2i").val() + '-' + $("#end_date__3i").val()
         }
       }
     }
 
-
-    console.log("filter_options: "+ JSON.stringify(filter_options))
+    // console.log("filter_options: "+ JSON.stringify(filter_options))
 
         $.ajax({
           url: '/searchfilter',
@@ -43,7 +39,6 @@ $(document).on('turbolinks:load', function() {
           data: filter_options,
           dataType: 'json'
         }).done(function (data) {
-          console.log("AJAX RETURNED DATA>>>>> "+data)
           $('.AJAXthis').empty()
 
           if (data.length > 0){
@@ -57,14 +52,9 @@ $(document).on('turbolinks:load', function() {
             $('.AJAXthis').append("<div class='center-content add-padding'><p>No listings found. Try other combinations.</p></div>")
           }
 
-
-
-
           }).fail(function () {
             console.log("ajax failed")
           })
-
-
 
   })
 
