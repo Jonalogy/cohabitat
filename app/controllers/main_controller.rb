@@ -4,15 +4,15 @@ class MainController < ApplicationController
   def index
     @spaces = Space.all.order("id desc").limit(6)
     @current_user = User.find_by_id(session[:user_id])
-    puts ">>>@current_user: #{@current_user.inspect}"
   end
 
   def show
     if params[:space_area_id] != ""
       @spaces = Space.where(country_id: params[:space_country_id], area_id: params[:space_area_id]).order("RANDOM()")
+      puts ">>>>#{@spaces.inspect}"
     else
       flash[:danger] = "Please select country."
-      redirect_to root_path, notice: 'Please select country.'
+      redirect_to root_path, notice: "Please select a country"
     end
   end
 
@@ -25,9 +25,9 @@ class MainController < ApplicationController
       @spaces = @spaces.where(vibe_id: params["vibe_id"])
     end
     if params["amenities_ids"]
-      params["amenities_ids"].each do |amenity|
-        @spaces = @spaces.includes(:amenities).where("amenities.id" => amenity)
-      end
+        params["amenities_ids"].each do |amenity|
+          @spaces = @spaces.includes(:amenities).where("amenities.id" => amenity)
+        end #params["amenities_ids"].each
     end
 
     if params["start_date"] && params["end_date"]
