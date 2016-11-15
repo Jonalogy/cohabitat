@@ -42,7 +42,11 @@ function total(){
 
       var days = ((ending - starting)/86400000)+1
 
+
       var total = $('#booking_seat').val() * seat_price * days;
+      total = Math.round( total * 100 )/100 //Limiting to 2 decimal places
+      console.log(days, typeof days)
+      console.log(total, typeof total);
 
       if (total > 0) {
         $('.stripe-button-el').show()
