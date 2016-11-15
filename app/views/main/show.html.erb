@@ -1,5 +1,7 @@
-<% if @spaces.count > 0 %>
     <div class="background-image-search-results"></div>
+
+<% if @spaces.count > 0 %>
+    <div>
 
       <div class="center-content text-white-opacity">
         <h2>Search results</h2>
@@ -17,14 +19,16 @@
                 </label>
                 <% end %>
             </div>
+
             <div class="make-div-inline-block">
                 <!-- Start <%= date_field_tag :start_date, "", class: 'filter_options input-styled', id: 'start_date'%> -->
-                Start <%= date_select :start_date,"" , {:prompt => { day: 'Day', month: 'Month', year: 'Year' }, order:[:day, :month, :year], use_short_month: true},  {:class => "filter_options input-styled"} %>
+                Start <%= date_select :start_date,"" , {:prompt => { day: 'Day', month: 'Month', year: 'Year' }},  {:class => "filter_options input-styled"} %>
             </div>
 
             <div style="display:inline-block">
               <!-- End <%= date_field_tag :start_date,"", class: 'filter_options input-styled', id: 'end_date'%> -->
-              End <%= date_select :end_date,"" , {:prompt => { day: 'Day', month: 'Month', year: 'Year' }, order:[:day, :month, :year], use_short_month: true},  {:class => "filter_options input-styled"} %>
+
+              End <%= date_select :end_date,"" , {:prompt => { day: 'Day', month: 'Month', year: 'Year' }},  {:class => "filter_options input-styled"} %>
 
             </div>
       </div>
@@ -47,6 +51,7 @@
 
 
     </div> <%# <div class="search-results-output col-xs-12 col-md-10 offset-md-1"> %>
+  </div> <%# <div class="background-image-search-results"> %>
 
 
 <% else %>
@@ -62,7 +67,7 @@
         <select name="space_area_id" id="space_area_id" class="styled-dropdown"><option value="">Select an area</option></select>
         <%= submit_tag "Search", class: "btn btn-secondary" %>
         <% end %>
-        <br/> <p> We heard Raffles Place in Singapore is an awesome area! Try looking there ;) </p> <br/>
+        <br/> <p> We heard Keong Siak in Singapore is an awesome area! Try looking there ;) </p> <br/>
       </div> <!--<div class="center-content no-search-found-text col-xs-8 offset-xs-2">-->
     </div> <!--<div class="center-content text-white-opacity">-->
   </div> <!--<div class="background-image-search-results-2">-->
