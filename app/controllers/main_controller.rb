@@ -76,8 +76,10 @@ class MainController < ApplicationController
           user_x.each do |x|
             space_id = x.space_id
             space_name =  Space.find(x.space_id).space_name
+            guest = User.find(1).first_name
             puts x = x.attributes
             x['space_name'] = space_name
+            x['guest_name'] = guest
             puts x
 
             @guest_bookings.push(x)
