@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   get "areaofcountry" => "areas#area_of_country"
   get "searchfilter" => "main#search_filter"
+  get "allspaces" => "spaces#admin_view_all"
 
   resources :spaces
   resources :amenities
