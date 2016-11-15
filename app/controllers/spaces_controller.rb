@@ -10,6 +10,17 @@ class SpacesController < ApplicationController
     @spaces = Space.where(:user_id => @user_id)
   end
 
+  def admin_view_all
+    @admin = session[:user_id]
+    if @admin != 1
+      redirect_to root_path, notice: "Admin Priviledges Only"
+      return
+    end
+
+    @spaces = Space.all
+    render :index
+  end
+
   # GET /spaces/1
   def show
     @shout = Shout.new
