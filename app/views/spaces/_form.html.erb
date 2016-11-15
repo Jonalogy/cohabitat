@@ -79,7 +79,7 @@
   <div class="form-group row col-md-8 offset-md-2">
     <label for="amenities" class="col-xs-3 col-form-label"><%= f.label :amenities %></label>
     <div class="col-xs-9">
-      <%= f.select :amenity_ids, Amenity.all.collect {|x| [x.name,x.id]} , {}, {:multiple => true, :style => "width:auto; margin:auto; height:auto" } %>
+      <%= f.select :amenity_ids, Amenity.all.collect {|x| [x.name,x.id]} , {}, {:multiple => true, :style => "width:auto; margin:auto; height:auto", size: Amenity.all.length } %>
     </div>
   </div>
 
