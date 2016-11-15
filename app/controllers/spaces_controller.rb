@@ -11,7 +11,14 @@ class SpacesController < ApplicationController
   end
 
   def admin_view_all
-    @all_spaces = Space.all
+    @admin = session[:user_id]
+    if @admin != 1
+      redirect_to root_path, notice: "Admin Priviledges Only"
+      return
+    end
+
+    @spaces = Space.all
+    render :index
   end
 
   # GET /spaces/1
