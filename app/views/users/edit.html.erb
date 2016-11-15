@@ -23,7 +23,7 @@
     <form>
       <div class="container ">
         <div class="row">
-          <div class="form-group col-xs-12">
+          <div class="form-group col-xs-14">
             <label for="email" class="col-xs-3 col-form-label"><%= f.label :email %></label>
             <div class="col-xs-9">
               <%= f.text_field :email,:readonly => true, :size => 80 %>
@@ -35,7 +35,6 @@
           <label for="last_name" class="col-xs-3 col-form-label"><%= f.label :first_name %></label>
           <div class="col-xs-9">
             <%= f.text_field :first_name, :size => 80 %>
-
           </div>
         </div>
 
@@ -71,16 +70,14 @@
         <div class="form-group row">
           <div class="offset-xs-3 col-xs-9">
             <%= f.submit "Submit", class: "btn btn-primary active" %>
+            <%= link_to 'View User', @user, class:"btn btn-secondary", role:"button", :method => :get  %>
           </div>
         </div>
       </div>
     </form>
     <% end %>
 
-    <div class="col-xs-12">
-      <%= link_to 'View User', @user, class:"created-btn btn btn-default editView-btn", role:"button", :method => :get  %>
-      <%= link_to 'Back', request.referer.present? ? request.referer : root_path , class:"created-btn btn btn-default editView-btn", :method => :get %>
-    </div>
+      <!-- <%= link_to 'Back', request.referer.present? ? request.referer : root_path , class:"created-btn btn btn-default editView-btn", :method => :get %> -->
 
   </div>
 
