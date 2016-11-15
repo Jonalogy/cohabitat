@@ -25,7 +25,7 @@
 
             <div style="display:inline-block">
               <!-- End <%= date_field_tag :start_date,"", class: 'filter_options input-styled', id: 'end_date'%> -->
-              End <%= date_select :end_date,"" , {:prompt => { day: 'Day', month: 'Month', year: 'Year' }, order:[:day, :month, :year], use_short_month: true,},  {:class => "filter_options input-styled"} %>
+              End <%= date_select :end_date,"" , {:prompt => { day: 'Day', month: 'Month', year: 'Year' }, order:[:day, :month, :year], use_short_month: true, selected:@today+1},  {:class => "filter_options input-styled"} %>
 
             </div>
       </div>
