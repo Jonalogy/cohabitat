@@ -55,10 +55,13 @@ class MainController < ApplicationController
     @space_ids.each do |space_id|
       space = Space.where(id: space_id).map(&:attributes)[0]
       @spaces_hash[space_id] = space['space_name']
-      # @space_names.push(['space_name'])
+
     end #@space_ids.each
 
     ####Guest Bookings####
+      puts ""
+      puts ">>>> Console Log (Guest Bookings) <<<<"
+      puts ""
 
       my_spaces = Space.where(user_id: @current_user.id).to_a
       @my_space_ids = []
@@ -71,6 +74,12 @@ class MainController < ApplicationController
        @my_space_ids.each do |my_space_id|
           user_x = Booking.where.not(user_id: @user_id).where(space_id: my_space_id).to_a
           user_x.each do |x|
+            space_id = x.space_id
+            space_name =  Space.find(x.space_id).space_name
+            puts x = x.attributes
+            x['space_name'] = space_name
+            puts x
+
             @guest_bookings.push(x)
          end
        end

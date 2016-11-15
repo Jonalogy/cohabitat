@@ -66,20 +66,20 @@
 
                <!-- <strong>Booked Space: </strong> <%#@space_names[guest_booking.space_id]%>
                <span>, <span> -->
-               <strong>Booked Space_id: </strong> <%=guest_booking.space_id%><br/>
+               <strong>Booked Space Name: </strong> <%=guest_booking['space_name']%><br/>
 
                <!-- <strong>By Guest: </strong> <%#@guest_names[guest_booking.user_id]%>
                <span>, <span> -->
-               <strong>User_id: </strong><%=guest_booking.user_id%><br/>
+               <strong>User_id: </strong><%=guest_booking['user_id']%><br/>
 
-               <strong>Starting: </strong> <%=guest_booking.start.strftime("%d-%b-%Y")%>
-               <strong>Ending: </strong> <%=guest_booking.end.strftime("%d-%b-%Y")%><br/>
+               <strong>Starting: </strong> <%=guest_booking['start'].strftime("%d-%b-%Y")%>
+               <strong>Ending: </strong> <%=guest_booking['end'].strftime("%d-%b-%Y")%><br/>
 
-               <strong>Booking_id: </strong> <%=guest_booking.id%>
+               <strong>Booking_id: </strong> <%=guest_booking['id']%>
                <span>, <span>
-               <strong>Seats: </strong> <%=guest_booking.seat%><br/>
+               <strong>Seats: </strong> <%=guest_booking['seat']%><br/>
 
-               <%= link_to 'View Guest', user_path(guest_booking.user_id), :role => 'button', :class => "btn btn-outline-primary btn-sm" %>
+               <%= link_to 'View Guest', user_path(guest_booking['user_id']), :role => 'button', :class => "btn btn-outline-primary btn-sm" %>
                <%= link_to 'Revoke Booking', guest_booking, method: :delete, data: { confirm: 'Are you sure? Guests will not be informed of the revole. Feature under construction' }, :role => 'button', :class => "btn btn-outline-danger btn-sm" %>
              </br>
 
