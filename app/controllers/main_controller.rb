@@ -7,6 +7,8 @@ class MainController < ApplicationController
   end
 
   def show
+    @today = Date.current
+
     if params[:space_area_id] != ""
       @spaces = Space.where(country_id: params[:space_country_id], area_id: params[:space_area_id]).order("RANDOM()")
       # puts ">>>>#{@spaces.inspect}"
