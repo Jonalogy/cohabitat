@@ -78,8 +78,8 @@
     <% end %>
 
     <div class="col-xs-12">
-      <%= button_to 'View', @user, class:"created-btn", :method => :get  %>
-      <%= button_to 'Back', request.referer.present? ? request.referer : root_path , class:"created-btn", :method => :get %>
+      <%= link_to 'View User', @user, class:"created-btn btn btn-default editView-btn", role:"button", :method => :get  %>
+      <%= link_to 'Back', request.referer.present? ? request.referer : root_path , class:"created-btn btn btn-default editView-btn", :method => :get %>
     </div>
 
   </div>

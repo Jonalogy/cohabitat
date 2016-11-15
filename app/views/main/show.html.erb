@@ -19,11 +19,14 @@
             </div>
 
             <div class="make-div-inline-block">
-                Start <%= date_field_tag :start_date, "", class: 'filter_options input-styled', id: 'start_date'%>
+                <!-- Start <%= date_field_tag :start_date, "", class: 'filter_options input-styled', id: 'start_date'%> -->
+                Start <%= date_select :start_date,"" , {:prompt => { day: 'Day', month: 'Month', year: 'Year' }},  {:class => "filter_options input-styled"} %>
             </div>
 
             <div style="display:inline-block">
-              End <%= date_field_tag :start_date,"", class: 'filter_options input-styled', id: 'end_date'%>
+              <!-- End <%= date_field_tag :start_date,"", class: 'filter_options input-styled', id: 'end_date'%> -->
+              End <%= date_select :end_date,"" , {:prompt => { day: 'Day', month: 'Month', year: 'Year' }},  {:class => "filter_options input-styled"} %>
+
             </div>
       </div>
 

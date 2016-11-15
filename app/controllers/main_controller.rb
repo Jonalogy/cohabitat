@@ -9,7 +9,7 @@ class MainController < ApplicationController
   def show
     if params[:space_area_id] != ""
       @spaces = Space.where(country_id: params[:space_country_id], area_id: params[:space_area_id]).order("RANDOM()")
-      puts ">>>>#{@spaces.inspect}"
+      # puts ">>>>#{@spaces.inspect}"
     else
       flash[:danger] = "Please select country."
       redirect_to root_path, notice: "Please select a country"
