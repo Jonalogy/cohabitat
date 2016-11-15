@@ -33,7 +33,7 @@ class MainController < ApplicationController
     end
 
     if params["start_date"] && params["end_date"]
-      @spaces = @spaces.joins(:availabilities).where("availabilities.start <= ? AND availabilities.end >= ?", params["start_date"], params["end_date"])
+      @spaces = @spaces.joins(:availabilities).where("availabilities.start <= ? AND availabilities.end >= ?", params["start_date"], params["end_date"]).distinct
     end
     render :json => @spaces, :include => [:vibe,:space_type, :images => {:only => :url }]
   end
