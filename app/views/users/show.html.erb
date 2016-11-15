@@ -1,38 +1,68 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <strong>Profile img:</strong><br>
-  <img src="<%= @user.profile_img_url %>" alt="" class="profileImg" />
-</p>
-
-<!-- <p>
-  <strong>Profile img url:</strong>
-  <%= @user.profile_img_url %>
-</p> -->
+<div class="background-image-search-results"></div>
 
 
-<p>
-  <strong>Bio:</strong>
-  <%= @user.bio %>
-</p>
 
-<%if (session[:user_id] == @user.id || session[:user_id] == 1)%>
-  <%= link_to 'Edit', edit_user_path(@user) %> |
-<%end%>
+  <div class="space-body center-content">
 
-<%= link_to 'Back', request.referer.present? ? request.referer : root_path%>
+
+    <h1>User Profile</h1>
+  </div>
+
+
+<!-- <div class="space-details col-xs-12 col-md-10 offset-md-1"> -->
+
+  <div class="container-fluid col-md-10 offset-md-1 habitat-table">
+    <div class="row center-content col-xs-12">
+
+      <div class=" center-content">
+        <div class="col-xs-12">
+
+          <p id="notice"><%= notice %></p>
+
+          <p>
+            <img src="<%= @user.profile_img_url %>" alt="" class="profileImg" />
+          </p>
+
+          <p>
+            <strong>Email:</strong>
+            <%= @user.email %>
+          </p>
+
+
+          <% if (@user.first_name != "") %>
+          <p>
+            <strong>First name:</strong>
+            <%= @user.first_name %>
+          </p>
+          <% end %>
+
+          <% if (@user.last_name != "") %>
+          <p>
+            <strong>Last name:</strong>
+            <%= @user.last_name %>
+          </p>
+          <% end %>
+
+          <% if (@user.bio != "") %>
+          <p>
+            <strong>Bio:</strong>
+            <%= @user.bio %>
+          </p>
+          <% end %>
+
+          <%if (session[:user_id] == @user.id || session[:user_id] == 1)%>
+            <%= link_to 'Edit', edit_user_path(@user) %> |
+          <%end%>
+
+          <%= link_to 'Back', request.referer.present? ? request.referer : root_path%>
+
+
+        </div>
+      </div>
+    </div>
+ </div>
+
+
+
+</div>

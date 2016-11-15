@@ -18,7 +18,8 @@
 
  .nav > li > a:hover{
     background-color:rgba(0,0,0,0);
-    font-weight: bold;
+    // font-weight: bold;
+    text-shadow: 5px 5px 8px black;
  }
 
 .navbar-toggler{
@@ -27,7 +28,8 @@
 
  .navbar-brand:hover {
     background-color:rgba(0,0,0,0) !important;
-    font-weight: bold;
+    // font-weight: bold;
+    text-shadow: 5px 5px 8px black;
  }
 
 .nav-link, .navbar-brand {
